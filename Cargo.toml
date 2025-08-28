@@ -24,7 +24,7 @@ env_logger = "0.11"
 log = "0.4"
 
 # Configuration
-config = "0.13"
+config = "0.15"
 
 # Date/Time handling
 chrono = "0.4"
