@@ -1,0 +1,30 @@
+{% extends "../base.tera" %}
+
+{% block content %}
+<section class="portfolio-header">
+    <h1>Portfolio</h1>
+    <p>Projects and work</p>
+</section>
+
+<section class="portfolio-grid">
+    <article class="project">
+        <h3>FreeBSD Server Infrastructure</h3>
+        <p>Managing multiple jails with Unix socket architecture</p>
+        <ul>
+            <li>Bastille jail management</li>
+            <li>nginx reverse proxy</li>
+            <li>Security-focused blind jails</li>
+        </ul>
+    </article>
+    
+    <article class="project">
+        <h3>Rust Web Development</h3>
+        <p>Building performant web applications with Rust</p>
+        <ul>
+            <li>Actix-Web framework</li>
+            <li>Tera template engine</li>
+            <li>Unix socket communication</li>
+        </ul>
+    </article>
+</section>
+{% endblock %}

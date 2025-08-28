@@ -1,0 +1,76 @@
+name: Deploy to Production
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+    paths-ignore:
+      - '**.md'
+      - 'docs/**'
+      - '.github/**'
+      - '!.github/workflows/deploy.yml'
+
+jobs:
+  deploy:
+    name: Deploy to FreeBSD Server
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Install Rust
+      uses: actions-rust-lang/setup-rust-toolchain@v1
+      with:
+        toolchain: stable
+    
+    - name: Build release
+      run: cargo build --release
+    
+    - name: Prepare deployment package
+      run: |
+        mkdir -p deploy
+        cp target/release/vvoss-web deploy/
+        cp -r templates deploy/
+        cp -r static deploy/
+        tar czf vvoss-deploy.tar.gz -C deploy .
+    
+    - name: Deploy to server
+      uses: appleboy/scp-action@v0.1.5
+      with:
+        host: ${{ secrets.DEPLOY_HOST }}
+        username: ${{ secrets.DEPLOY_USER }}
+        key: ${{ secrets.DEPLOY_SSH_KEY }}
+        source: "vvoss-deploy.tar.gz"
+        target: "/tmp/"
+    
+    - name: Execute deployment
+      uses: appleboy/ssh-action@v1.0.0
+      with:
+        host: ${{ secrets.DEPLOY_HOST }}
+        username: ${{ secrets.DEPLOY_USER }}
+        key: ${{ secrets.DEPLOY_SSH_KEY }}
+        script: |
+          cd /tmp
+          tar xzf vvoss-deploy.tar.gz
+          
+          # Stop service
+          sudo bastille service vvoss_www vvoss_web stop || true
+          
+          # Deploy files
+          sudo cp vvoss-web /usr/local/bastille/jails/vvoss_www/root/usr/local/bin/
+          sudo chmod +x /usr/local/bastille/jails/vvoss_www/root/usr/local/bin/vvoss-web
+          sudo cp -r templates /usr/local/bastille/jails/vvoss_www/root/usr/local/www/vvoss/
+          sudo cp -r static /usr/local/bastille/jails/vvoss_www/root/usr/local/www/vvoss/
+          
+          # Fix permissions
+          sudo bastille cmd vvoss_www chown -R www:www /usr/local/www/vvoss
+          
+          # Start service
+          sudo bastille service vvoss_www vvoss_web start
+          
+          # Cleanup
+          rm -f vvoss-deploy.tar.gz vvoss-web
+          rm -rf templates static
+          
+          echo "Deployment completed successfully!"

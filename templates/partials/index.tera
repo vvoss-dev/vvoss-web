@@ -1,0 +1,27 @@
+{% extends "../base.tera" %}
+
+{% block content %}
+<section class="hero">
+    <h1>Welcome to vvoss.dev</h1>
+    <p>Personal website powered by Rust and Tera templates</p>
+</section>
+
+<section class="content">
+    <article>
+        <h2>About</h2>
+        <p>This website runs on FreeBSD with a pure Rust backend using Tera templates.</p>
+        <p>No JavaScript frameworks, no PHP - just clean HTML5, CSS3, and Rust.</p>
+    </article>
+    
+    <article>
+        <h2>Technology Stack</h2>
+        <ul>
+            <li>FreeBSD with Bastille Jails</li>
+            <li>Rust with Actix-Web</li>
+            <li>Tera Template Engine</li>
+            <li>Unix Socket Communication</li>
+            <li>Pure HTML5 & CSS3</li>
+        </ul>
+    </article>
+</section>
+{% endblock %}

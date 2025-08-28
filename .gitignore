@@ -1,0 +1,25 @@
+# Rust
+target/
+Cargo.lock
+*.rs.bk
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Local env
+.env
+.env.local
+
+# Local development
+local/
+
+# Deployment
+deploy_tmp/
+*.tar.gz

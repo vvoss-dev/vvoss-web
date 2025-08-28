@@ -1,0 +1,22 @@
+# Code Owners for vvoss.dev
+# These owners will be automatically requested for review
+
+# Global owner
+* @vvoss-dev
+
+# Documentation
+/docs/ @vvoss-dev
+*.md @vvoss-dev
+
+# Rust code
+/src/ @vvoss-dev
+Cargo.toml @vvoss-dev
+Cargo.lock @vvoss-dev
+
+# Templates and frontend
+/templates/ @vvoss-dev
+/static/ @vvoss-dev
+
+# CI/CD
+/.github/ @vvoss-dev
+/scripts/ @vvoss-dev

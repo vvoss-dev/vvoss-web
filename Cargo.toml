@@ -1,0 +1,39 @@
+[package]
+name = "vvoss-web"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+# Web framework with Unix socket support
+actix-web = "4.4"
+tokio = { version = "1.35", features = ["full"] }
+
+# Template engine
+tera = "1.19"
+
+# Serialisation
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+# Error handling
+anyhow = "1.0"
+thiserror = "1.0"
+
+# Logging
+env_logger = "0.11"
+log = "0.4"
+
+# Configuration
+config = "0.13"
+
+# Date/Time handling
+chrono = "0.4"
+
+# Markdown support (optional)
+pulldown-cmark = "0.9"
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+strip = true
