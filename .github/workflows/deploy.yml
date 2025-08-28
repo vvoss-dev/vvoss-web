@@ -45,7 +45,7 @@ jobs:
         target: "/tmp/"
     
     - name: Execute deployment
-      uses: appleboy/ssh-action@v1.0.0
+      uses: appleboy/ssh-action@v1.2.2
       with:
         host: ${{ secrets.DEPLOY_HOST }}
         username: ${{ secrets.DEPLOY_USER }}
