@@ -30,7 +30,7 @@ config = "0.13"
 chrono = "0.4"
 
 # Markdown support (optional)
-pulldown-cmark = "0.9"
+pulldown-cmark = "0.13"
 
 [profile.release]
 opt-level = 3
