@@ -1,0 +1,26 @@
+{% extends "../base.tera" %}
+
+{% block content %}
+<section class="legal">
+    <h1>Impressum</h1>
+    
+    <article>
+        <h2>Contact Information</h2>
+        <address>
+            <p>vvoss.dev</p>
+            <p>Email: admin@vvoss.dev</p>
+        </address>
+    </article>
+    
+    <article>
+        <h2>Technical Information</h2>
+        <p>This website is hosted on a FreeBSD server using Rust and Tera templates.</p>
+        <p>No cookies, no tracking, no JavaScript frameworks.</p>
+    </article>
+    
+    <article>
+        <h2>Copyright</h2>
+        <p>&copy; {{ current_year }} vvoss.dev - All rights reserved</p>
+    </article>
+</section>
+{% endblock %}

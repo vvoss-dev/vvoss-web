@@ -1,0 +1,58 @@
+#!/bin/sh
+# Git post-receive hook for automatic deployment
+# Install on server: /usr/local/git/vvoss.git/hooks/post-receive
+
+set -e
+
+echo "=== Git deployment triggered for vvoss.dev ==="
+
+WORK_DIR="/tmp/vvoss-deploy-$$"
+JAIL_ROOT="/usr/local/bastille/jails/vvoss_www/root"
+WEB_ROOT="${JAIL_ROOT}/usr/local/www/vvoss"
+
+# Extract the pushed branch
+while read oldrev newrev refname; do
+    branch=$(git rev-parse --symbolic --abbrev-ref $refname)
+    
+    if [ "$branch" = "main" ]; then
+        echo "Main branch received, deploying..."
+        
+        # Create work directory and checkout code
+        mkdir -p "$WORK_DIR"
+        git --work-tree="$WORK_DIR" checkout -f main
+        
+        cd "$WORK_DIR"
+        
+        # Build in temporary directory
+        echo "Building Rust application..."
+        cargo build --release
+        
+        # Stop service gracefully
+        echo "Stopping service..."
+        sudo bastille service vvoss_www vvoss_web stop 2>/dev/null || true
+        
+        # Deploy binary
+        echo "Deploying binary..."
+        sudo cp target/release/vvoss-web "${JAIL_ROOT}/usr/local/bin/"
+        sudo bastille cmd vvoss_www chmod +x /usr/local/bin/vvoss-web
+        
+        # Deploy templates and static files
+        echo "Deploying assets..."
+        sudo cp -r templates "${WEB_ROOT}/"
+        sudo cp -r static "${WEB_ROOT}/"
+        
+        # Fix permissions
+        sudo bastille cmd vvoss_www chown -R www:www /usr/local/www/vvoss
+        
+        # Start service
+        echo "Starting service..."
+        sudo bastille service vvoss_www vvoss_web start
+        
+        # Cleanup
+        rm -rf "$WORK_DIR"
+        
+        echo "=== Deployment complete for commit $(git rev-parse HEAD) ==="
+    else
+        echo "Received push to $branch branch, ignoring (only main deploys)"
+    fi
+done
