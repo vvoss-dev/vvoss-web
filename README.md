@@ -43,7 +43,10 @@ cargo build --release
 Automated deployment via GitHub Actions on push to main branch.
 
 ## Documentation
-Detailed documentation is maintained locally for security reasons.
+
+Public documentation is in this README. Detailed server and deployment documentation is maintained in a separate private repository for security reasons.
+
+**Note**: The `local/` directory is gitignored and contains private configuration and documentation.
 
 ## License
 © 2024 Vivian Voss - All rights reserved
