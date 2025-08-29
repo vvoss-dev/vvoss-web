@@ -1,4 +1,4 @@
-{% extends "../base.tera" %}
+{% extends "base.tera" %}
 
 {% block content %}
 <section class="portfolio-header">
