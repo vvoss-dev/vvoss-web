@@ -6,6 +6,9 @@
     <meta name="description" content="{{ t['site.description'] }}">
     <title>{{ t['site.title'] }}</title>
     
+    <!-- Fonts -->
+    <link rel="stylesheet" href="/static/css/fonts.css">
+    
     <!-- Pure CSS3, load only needed breakpoint -->
     <link rel="stylesheet" href="/static/css/base.css">
     {% if client.breakpoint == "phone" %}

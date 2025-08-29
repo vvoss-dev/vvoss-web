@@ -1,0 +1,64 @@
+/*
+ * Copyright (c) 2025 Vivian Voss - All rights reserved
+ * vvoss.dev - Personal website
+ * 
+ * Tablet Styles - Viewport 560px to 959px (Overrides only)
+ * 
+ * CSS Organization Pattern:
+ * 1. Render Control (display, visibility, opacity)
+ * 2. Positioning (position, top/right/bottom/left)
+ * 3. Box Model (width, height, margin, padding)
+ * 4. Typography (font-*, text-*, color)
+ * 5. Visual Design (background, border, shadow)
+ * 6. Effects (transform, transition, animation)
+ * 7. Interaction (cursor, user-select, pointer-events)
+ */
+
+/* Layout Container */
+main {
+    /* Box Model */
+    max-width: 768px;
+    margin: 0 auto 0 auto;
+    padding: 2rem 2rem 2rem 2rem;
+}
+
+/* Navigation */
+nav {
+    /* Render Control */
+    display: flex;
+    
+    /* Positioning */
+    justify-content: space-between;
+    align-items: center;
+    
+    /* Box Model */
+    padding: 1.5rem 2rem 1.5rem 2rem;
+}
+
+nav ul {
+    /* Render Control */
+    display: flex;
+    
+    /* Box Model */
+    gap: 1.5rem;
+}
+
+/* Typography Scale */
+h1 {
+    /* Typography */
+    font-size: 2.25rem;
+    line-height: 1.2;
+    letter-spacing: 0.05em;
+}
+
+h2 {
+    /* Typography */
+    font-size: 1.75rem;
+    line-height: 1.3;
+}
+
+p {
+    /* Typography */
+    font-size: 1.125rem;
+    line-height: 1.7;
+}

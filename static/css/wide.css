@@ -1,0 +1,127 @@
+/*
+ * Copyright (c) 2025 Vivian Voss - All rights reserved
+ * vvoss.dev - Personal website
+ * 
+ * Wide Styles - Viewport >= 1260px (Overrides only)
+ * 
+ * CSS Organization Pattern:
+ * 1. Render Control (display, visibility, opacity)
+ * 2. Positioning (position, top/right/bottom/left)
+ * 3. Box Model (width, height, margin, padding)
+ * 4. Typography (font-*, text-*, color)
+ * 5. Visual Design (background, border, shadow)
+ * 6. Effects (transform, transition, animation)
+ * 7. Interaction (cursor, user-select, pointer-events)
+ */
+
+/* Layout Container - Asymmetric Bauhaus Layout */
+main {
+    /* Render Control */
+    display: grid;
+    
+    /* Positioning */
+    grid-template-columns: 1fr 2fr 1fr;
+    
+    /* Box Model */
+    max-width: 1440px;
+    margin: 0 auto 0 auto;
+    padding: 4rem 0 4rem 0;
+}
+
+main > * {
+    /* Positioning */
+    grid-column: 2;
+    
+    /* Box Model */
+    padding: 0 4rem 0 4rem;
+}
+
+/* Navigation - Wide spacing */
+nav {
+    /* Render Control */
+    display: flex;
+    
+    /* Positioning */
+    justify-content: space-between;
+    align-items: center;
+    
+    /* Box Model */
+    max-width: 1440px;
+    margin: 0 auto 0 auto;
+    padding: 2rem 4rem 2rem 4rem;
+}
+
+nav ul {
+    /* Render Control */
+    display: flex;
+    
+    /* Box Model */
+    gap: 3rem;
+}
+
+/* Typography Scale - Extreme for art direction */
+h1 {
+    /* Typography */
+    font-size: 5rem;
+    font-weight: var(--font-weight-black);
+    line-height: 0.9;
+    letter-spacing: 0.2em;
+}
+
+h2 {
+    /* Typography */
+    font-size: 3rem;
+    font-weight: var(--font-weight-thin);
+    line-height: 1.1;
+    letter-spacing: 0.15em;
+}
+
+p {
+    /* Box Model */
+    max-width: 65ch;
+    
+    /* Typography */
+    font-size: 1.25rem;
+    line-height: 2;
+}
+
+/* Bauhaus Art Direction */
+.hero-title {
+    /* Typography */
+    font-size: 8rem;
+    font-weight: var(--font-weight-thin);
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+}
+
+.accent-vertical {
+    /* Positioning */
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    
+    /* Typography */
+    font-size: 1rem;
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+}
+
+/* Geometric Elements */
+.bauhaus-circle {
+    /* Render Control */
+    display: block;
+    
+    /* Positioning */
+    position: absolute;
+    
+    /* Box Model */
+    width: 200px;
+    height: 200px;
+    
+    /* Visual Design */
+    background: var(--color-tertiary);
+    border-radius: 50%;
+    
+    /* Effects */
+    opacity: 0.1;
+}

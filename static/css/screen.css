@@ -1,0 +1,76 @@
+/*
+ * Copyright (c) 2025 Vivian Voss - All rights reserved
+ * vvoss.dev - Personal website
+ * 
+ * Screen Styles - Viewport 960px to 1259px (Overrides only)
+ * 
+ * CSS Organization Pattern:
+ * 1. Render Control (display, visibility, opacity)
+ * 2. Positioning (position, top/right/bottom/left)
+ * 3. Box Model (width, height, margin, padding)
+ * 4. Typography (font-*, text-*, color)
+ * 5. Visual Design (background, border, shadow)
+ * 6. Effects (transform, transition, animation)
+ * 7. Interaction (cursor, user-select, pointer-events)
+ */
+
+/* Layout Container */
+main {
+    /* Box Model */
+    max-width: 1024px;
+    margin: 0 auto 0 auto;
+    padding: 3rem 3rem 3rem 3rem;
+}
+
+/* Navigation */
+nav {
+    /* Render Control */
+    display: flex;
+    
+    /* Positioning */
+    justify-content: space-between;
+    align-items: center;
+    
+    /* Box Model */
+    max-width: 1024px;
+    margin: 0 auto 0 auto;
+    padding: 2rem 3rem 2rem 3rem;
+}
+
+nav ul {
+    /* Render Control */
+    display: flex;
+    
+    /* Box Model */
+    gap: 2rem;
+}
+
+/* Typography Scale */
+h1 {
+    /* Typography */
+    font-size: 3rem;
+    line-height: 1.1;
+    letter-spacing: 0.1em;
+}
+
+h2 {
+    /* Typography */
+    font-size: 2.25rem;
+    line-height: 1.2;
+    letter-spacing: 0.05em;
+}
+
+p {
+    /* Typography */
+    font-size: 1.125rem;
+    line-height: 1.8;
+}
+
+/* Bauhaus Elements */
+.hero-title {
+    /* Typography */
+    font-size: 4rem;
+    font-weight: var(--font-weight-thin);
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+}

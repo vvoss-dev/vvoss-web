@@ -1,0 +1,61 @@
+/*
+ * Copyright (c) 2025 Vivian Voss - All rights reserved
+ * vvoss.dev - Personal website
+ * 
+ * Phone Styles - Viewport <= 559px (Overrides only)
+ * 
+ * CSS Organization Pattern:
+ * 1. Render Control (display, visibility, opacity)
+ * 2. Positioning (position, top/right/bottom/left)
+ * 3. Box Model (width, height, margin, padding)
+ * 4. Typography (font-*, text-*, color)
+ * 5. Visual Design (background, border, shadow)
+ * 6. Effects (transform, transition, animation)
+ * 7. Interaction (cursor, user-select, pointer-events)
+ */
+
+/* Layout Overrides for Phone */
+main {
+    /* Box Model */
+    padding: 1rem 1rem 1rem 1rem;
+}
+
+/* Navigation - Stack vertically on phone */
+nav {
+    /* Positioning */
+    flex-direction: column;
+    align-items: flex-start;
+    
+    /* Box Model */
+    padding: 1rem 1rem 1rem 1rem;
+}
+
+nav ul {
+    /* Positioning */
+    flex-direction: column;
+    
+    /* Box Model */
+    margin-top: 1rem;
+    width: 100%;
+    gap: 0.5rem;
+}
+
+/* Typography Scale */
+h1 {
+    /* Typography */
+    font-size: 2rem;
+    line-height: 1.2;
+    letter-spacing: 0.02em;
+}
+
+h2 {
+    /* Typography */
+    font-size: 1.5rem;
+    line-height: 1.3;
+}
+
+p {
+    /* Typography */
+    font-size: 1rem;
+    line-height: 1.6;
+}

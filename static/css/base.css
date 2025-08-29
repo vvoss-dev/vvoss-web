@@ -1,0 +1,170 @@
+/*
+ * Copyright (c) 2025 Vivian Voss - All rights reserved
+ * vvoss.dev - Personal website
+ * 
+ * Base Styles - Foundation for all breakpoints
+ * 
+ * CSS Organization Pattern:
+ * 1. Render Control (display, visibility, opacity)
+ * 2. Positioning (position, top/right/bottom/left)
+ * 3. Box Model (width, height, margin, padding)
+ * 4. Typography (font-*, text-*, color)
+ * 5. Visual Design (background, border, shadow)
+ * 6. Effects (transform, transition, animation)
+ * 7. Interaction (cursor, user-select, pointer-events)
+ */
+
+/* OKLCH Color System */
+:root {
+    /* Primary colors */
+    --color-primary: oklch(17% 0.01 250);      /* #22222B - Dark blue-gray */
+    --color-secondary: oklch(67% 0.16 230);    /* #3698F3 - Medium blue */
+    --color-tertiary: oklch(64% 0.27 10);      /* #FF1961 - Pink accent */
+    
+    /* Neutrals - low chroma for true grays */
+    --color-black: oklch(10% 0 0);
+    --color-dark: oklch(25% 0.01 0);
+    --color-gray: oklch(60% 0.01 0);
+    --color-light: oklch(90% 0.01 0);
+    --color-white: oklch(100% 0 0);
+    
+    /* Text colors */
+    --color-text: oklch(20% 0.01 0);
+    --color-text-light: oklch(40% 0.01 0);
+    --color-text-inverse: oklch(95% 0 0);
+    
+    /* Background colors */
+    --color-bg: oklch(94% 0 0);                /* #EFEFEF - Light gray background */
+    --color-bg-alt: oklch(95% 0.01 0);
+    
+    /* Semantic colors */
+    --color-success: oklch(70% 0.15 145);      /* Green */
+    --color-warning: oklch(75% 0.15 85);       /* Yellow */
+    --color-error: oklch(65% 0.18 25);         /* Red */
+    --color-info: oklch(65% 0.12 235);         /* Blue */
+    
+    /* Border colors */
+    --color-border: oklch(85% 0.01 0);
+    --color-border-dark: oklch(70% 0.02 0);
+}
+
+/* Reset and defaults */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Use Inter font family globally */
+html {
+    font-family: var(--font-family);
+    font-weight: var(--font-weight-regular);
+    font-size: 16px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    min-height: 100vh;
+    color: var(--color-text);
+    background: var(--color-bg);
+}
+
+/* Typography defaults with Inter weights */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: var(--font-weight-bold);
+    line-height: 1.2;
+    margin-bottom: 1rem;
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: var(--font-weight-black);
+}
+
+h2 {
+    font-size: 2rem;
+    font-weight: var(--font-weight-extrabold);
+}
+
+h3 {
+    font-size: 1.75rem;
+    font-weight: var(--font-weight-bold);
+}
+
+h4 {
+    font-size: 1.5rem;
+    font-weight: var(--font-weight-semibold);
+}
+
+h5 {
+    font-size: 1.25rem;
+    font-weight: var(--font-weight-medium);
+}
+
+h6 {
+    font-size: 1rem;
+    font-weight: var(--font-weight-medium);
+}
+
+p {
+    margin-bottom: 1rem;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+strong, b {
+    font-weight: var(--font-weight-bold);
+}
+
+em, i {
+    font-style: italic;
+}
+
+/* Basic layout structure */
+header {
+    padding: 1rem;
+    border-bottom: 1px solid var(--color-border);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav .logo {
+    font-size: 1.5rem;
+    font-weight: var(--font-weight-bold);
+    text-decoration: none;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+}
+
+nav a {
+    font-weight: var(--font-weight-medium);
+}
+
+main {
+    padding: 2rem;
+    min-height: calc(100vh - 200px);
+}
+
+footer {
+    padding: 2rem;
+    border-top: 1px solid var(--color-border);
+    text-align: center;
+    font-weight: var(--font-weight-light);
+}
