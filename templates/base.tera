@@ -1,17 +1,22 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="{% if client.language == 'de-DE' %}de{% else %}en{% endif %}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="{{ description }}">
-    <title>{{ title }}</title>
+    <meta name="description" content="{{ t['site.description'] }}">
+    <title>{{ t['site.title'] }}</title>
     
-    <!-- Pure CSS3, no frameworks -->
+    <!-- Pure CSS3, load only needed breakpoint -->
     <link rel="stylesheet" href="/static/css/base.css">
-    <link rel="stylesheet" href="/static/css/phone.css" media="(max-width: 480px)">
-    <link rel="stylesheet" href="/static/css/tablet.css" media="(min-width: 481px) and (max-width: 768px)">
-    <link rel="stylesheet" href="/static/css/screen.css" media="(min-width: 769px) and (max-width: 1200px)">
-    <link rel="stylesheet" href="/static/css/wide.css" media="(min-width: 1201px)">
+    {% if client.breakpoint == "phone" %}
+    <link rel="stylesheet" href="/static/css/phone.css">
+    {% elif client.breakpoint == "tablet" %}
+    <link rel="stylesheet" href="/static/css/tablet.css">
+    {% elif client.breakpoint == "screen" %}
+    <link rel="stylesheet" href="/static/css/screen.css">
+    {% else %}
+    <link rel="stylesheet" href="/static/css/wide.css">
+    {% endif %}
     
     {% block head %}{% endblock %}
 </head>
@@ -20,9 +25,9 @@
         <nav>
             <a href="/" class="logo">vvoss.dev</a>
             <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/portfolio">Portfolio</a></li>
-                <li><a href="/impressum">Impressum</a></li>
+                <li><a href="/">{{ t["nav.home"] }}</a></li>
+                <li><a href="/portfolio">{{ t["nav.portfolio"] }}</a></li>
+                <li><a href="/impressum">{{ t["nav.impressum"] }}</a></li>
             </ul>
         </nav>
     </header>
@@ -32,7 +37,7 @@
     </main>
     
     <footer>
-        <p>&copy; {{ current_year }} vvoss.dev - Built with Rust & Tera</p>
+        <p>&copy; {{ current_year }} vvoss.dev - {{ t["site.copyright"] }}</p>
     </footer>
     
     {% block scripts %}{% endblock %}

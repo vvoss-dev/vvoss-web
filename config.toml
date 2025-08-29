@@ -1,0 +1,21 @@
+# vvoss.dev Website Configuration
+
+[auth]
+enabled = true
+username = "vvoss"
+password = "PalimPalim"
+
+[server]
+socket_path = "/var/run/sockets/vvoss_www.sock"
+workers = 4
+
+[templates]
+path = "templates"
+cache = true
+
+[static]
+path = "static"
+cache_max_age = 3600
+
+[logging]
+level = "info"

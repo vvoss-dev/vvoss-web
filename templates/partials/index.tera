@@ -28,13 +28,32 @@
     </article>
     
     <article>
-        <h2>Test Features</h2>
-        <p>Current deployment test: <strong>{{ current_year }}</strong></p>
-        <p>Server time rendering works!</p>
+        <h2>Client Detection Test</h2>
         <div class="test-box">
-            <h3>Tera Template Test</h3>
-            <p>If you see this, Tera templates are working correctly!</p>
-            <p>Title from context: <em>{{ title }}</em></p>
+            <h3>Your Device Info:</h3>
+            <ul>
+                <li><strong>Language:</strong> {{ client.language }}</li>
+                <li><strong>Device Type:</strong> {{ client.device_type }}</li>
+                <li><strong>CSS Breakpoint:</strong> {{ client.breakpoint }}</li>
+                {% if client.screen_width %}
+                <li><strong>Screen:</strong> {{ client.screen_width }}x{{ client.screen_height }}</li>
+                {% endif %}
+                {% if client.viewport_width %}
+                <li><strong>Viewport:</strong> {{ client.viewport_width }}x{{ client.viewport_height }}</li>
+                {% endif %}
+                {% if client.dpr %}
+                <li><strong>Pixel Ratio:</strong> {{ client.dpr }}</li>
+                {% endif %}
+            </ul>
+            
+            <h3>Available Translations:</h3>
+            <ul>
+                <li>{{ t["site.title"] }}</li>
+                <li>{{ t["site.description"] }}</li>
+                <li>{{ t["nav.home"] }}</li>
+            </ul>
+            
+            <p><strong>Current Year:</strong> {{ current_year }}</p>
         </div>
     </article>
 </section>

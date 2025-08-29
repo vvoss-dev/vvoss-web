@@ -2,8 +2,8 @@
 
 {% block content %}
 <section class="portfolio-header">
-    <h1>Portfolio</h1>
-    <p>Projects and work</p>
+    <h1>{{ t["portfolio.title"] }}</h1>
+    <p>{{ t["portfolio.subtitle"] }}</p>
 </section>
 
 <section class="portfolio-grid">

@@ -1,0 +1,33 @@
+key;text;locale
+site.title;vvoss.dev;de-DE
+site.title;vvoss.dev;en-EN
+site.description;Persönliche Website von V. Voss;de-DE
+site.description;Personal website of V. Voss;en-EN
+site.author;V. Voss;de-DE
+site.author;V. Voss;en-EN
+site.copyright;Alle Rechte vorbehalten;de-DE
+site.copyright;All rights reserved;en-EN
+nav.home;Startseite;de-DE
+nav.home;Home;en-EN
+nav.portfolio;Portfolio;de-DE
+nav.portfolio;Portfolio;en-EN
+nav.impressum;Impressum;de-DE
+nav.impressum;Imprint;en-EN
+nav.contact;Kontakt;de-DE
+nav.contact;Contact;en-EN
+footer.technical;Diese Website läuft auf einem FreeBSD Server mit Rust und Tera Templates.;de-DE
+footer.technical;This website is hosted on a FreeBSD server using Rust and Tera templates.;en-EN
+footer.privacy;Keine Cookies, kein Tracking, keine JavaScript-Frameworks.;de-DE
+footer.privacy;No cookies, no tracking, no JavaScript frameworks.;en-EN
+portfolio.title;Portfolio;de-DE
+portfolio.title;Portfolio;en-EN
+portfolio.subtitle;Projekte und Arbeiten;de-DE
+portfolio.subtitle;Projects and work;en-EN
+impressum.title;Impressum;de-DE
+impressum.title;Imprint;en-EN
+impressum.contact;Kontaktinformationen;de-DE
+impressum.contact;Contact Information;en-EN
+impressum.technical;Technische Informationen;de-DE
+impressum.technical;Technical Information;en-EN
+impressum.copyright;Copyright;de-DE
+impressum.copyright;Copyright;en-EN
