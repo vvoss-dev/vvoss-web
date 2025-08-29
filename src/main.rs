@@ -123,9 +123,9 @@ fn detect_device_type(req: &HttpRequest, screen_info: &Option<ScreenInfo>) -> St
     // If we have screen info, use it for better detection
     if let Some(info) = screen_info {
         // Use viewport width for more accurate detection
-        if info.viewport_width <= 480 {
+        if info.viewport_width <= 559 {
             return "mobile".to_string();
-        } else if info.viewport_width <= 768 {
+        } else if info.viewport_width <= 959 {
             return "tablet".to_string();
         } else if info.viewport_width > 1920 {
             return "wide".to_string();
@@ -186,11 +186,11 @@ fn detect_device_type(req: &HttpRequest, screen_info: &Option<ScreenInfo>) -> St
 fn detect_breakpoint(req: &HttpRequest, screen_info: &Option<ScreenInfo>) -> String {
     // If we have actual screen measurements, use them
     if let Some(info) = screen_info {
-        if info.viewport_width <= 480 {
+        if info.viewport_width <= 559 {
             return "phone".to_string();
-        } else if info.viewport_width <= 768 {
+        } else if info.viewport_width <= 959 {
             return "tablet".to_string();
-        } else if info.viewport_width <= 1200 {
+        } else if info.viewport_width <= 1259 {
             return "screen".to_string();
         } else {
             return "wide".to_string();
@@ -412,13 +412,16 @@ async fn main() -> std::io::Result<()> {
         std::fs::Permissions::from_mode(0o666)
     )?;
 
+    let config_clone = config.clone();
     HttpServer::new(move || {
+        let auth = HttpAuthentication::basic(validator);
+        
         App::new()
-            .app_data(web::Data::new(config.clone()))
+            .app_data(web::Data::new(config_clone.clone()))
             .app_data(web::Data::new(tera.clone()))
             .app_data(web::Data::new(translations.clone()))
             .wrap(middleware::Logger::default())
-            .wrap(HttpAuthentication::basic(validator))
+            .wrap(auth)
             .route("/", web::get().to(index))
             .route("/portfolio", web::get().to(portfolio))
             .route("/impressum", web::get().to(impressum))
