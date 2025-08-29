@@ -86,6 +86,8 @@ fn detect_client_info(req: &HttpRequest) -> ClientInfo {
     let screen_info = parse_screen_info(req);
     
     // Detect language from Accept-Language header
+    let mut language = "en-EN".to_string();
+    
     if let Some(accept_lang) = req.headers().get("accept-language") {
         if let Ok(lang_str) = accept_lang.to_str() {
             // Parse Accept-Language header (e.g., "de-DE,de;q=0.9,en;q=0.8")
@@ -94,34 +96,18 @@ fn detect_client_info(req: &HttpRequest) -> ClientInfo {
                 
                 // Check if we support this language
                 if lang.starts_with("de") {
-                    return ClientInfo {
-                        language: "de-DE".to_string(),
-                        screen_width: screen_info.as_ref().map(|s| s.width),
-                        screen_height: screen_info.as_ref().map(|s| s.height),
-                        viewport_width: screen_info.as_ref().map(|s| s.viewport_width),
-                        viewport_height: screen_info.as_ref().map(|s| s.viewport_height),
-                        dpr: screen_info.as_ref().map(|s| s.dpr),
-                        device_type: detect_device_type(req, &screen_info),
-                        breakpoint: detect_breakpoint(req, &screen_info),
-                    };
+                    language = "de-DE".to_string();
+                    break;
                 } else if lang.starts_with("en") {
-                    return ClientInfo {
-                        language: "en-EN".to_string(),
-                        screen_width: screen_info.as_ref().map(|s| s.width),
-                        screen_height: screen_info.as_ref().map(|s| s.height),
-                        viewport_width: screen_info.as_ref().map(|s| s.viewport_width),
-                        viewport_height: screen_info.as_ref().map(|s| s.viewport_height),
-                        dpr: screen_info.as_ref().map(|s| s.dpr),
-                        device_type: detect_device_type(req, &screen_info),
-                        breakpoint: detect_breakpoint(req, &screen_info),
-                    };
+                    language = "en-EN".to_string();
+                    break;
                 }
             }
         }
-    };
+    }
     
     ClientInfo {
-        language: "en-EN".to_string(),
+        language,
         screen_width: screen_info.as_ref().map(|s| s.width),
         screen_height: screen_info.as_ref().map(|s| s.height),
         viewport_width: screen_info.as_ref().map(|s| s.viewport_width),
