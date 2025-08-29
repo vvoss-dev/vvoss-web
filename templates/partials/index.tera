@@ -4,6 +4,7 @@
 <section class="hero">
     <h1>Welcome to vvoss.dev</h1>
     <p>Personal website powered by Rust and Tera templates</p>
+    <p class="status">🚀 Successfully deployed via GitHub auto-deployment!</p>
 </section>
 
 <section class="content">
@@ -16,12 +17,25 @@
     <article>
         <h2>Technology Stack</h2>
         <ul>
-            <li>FreeBSD with Bastille Jails</li>
-            <li>Rust with Actix-Web</li>
-            <li>Tera Template Engine</li>
-            <li>Unix Socket Communication</li>
-            <li>Pure HTML5 & CSS3</li>
+            <li>✅ FreeBSD 14.3 with Bastille Jails</li>
+            <li>✅ Rust with Actix-Web</li>
+            <li>✅ Tera Template Engine</li>
+            <li>✅ Unix Socket Communication</li>
+            <li>✅ nginx with HTTPS (Wildcard SSL)</li>
+            <li>✅ Pure HTML5 & CSS3</li>
+            <li>✅ Automatic Git Deployment</li>
         </ul>
+    </article>
+    
+    <article>
+        <h2>Test Features</h2>
+        <p>Current deployment test: <strong>{{ current_year }}</strong></p>
+        <p>Server time rendering works!</p>
+        <div class="test-box">
+            <h3>Tera Template Test</h3>
+            <p>If you see this, Tera templates are working correctly!</p>
+            <p>Title from context: <em>{{ title }}</em></p>
+        </div>
     </article>
 </section>
 {% endblock %}
