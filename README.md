@@ -46,7 +46,7 @@ Automated deployment via GitHub Actions on push to main branch.
 
 Public documentation is in this README. Detailed server and deployment documentation is maintained in a separate private repository for security reasons.
 
-**Note**: The `local/` directory is gitignored and contains private configuration and documentation.
+**Note**: The `local/` directory is gitignored and contains a separate private Git repository with server configuration and documentation.
 
 ## License
 © 2024 Vivian Voss - All rights reserved
