@@ -1,4 +1,5 @@
 use actix_web::{middleware, web, App, HttpServer};
+use actix_web_httpauth::middleware::HttpAuthentication;
 use std::os::unix::net::UnixListener;
 use std::os::unix::fs::PermissionsExt;
 use std::path::Path;
@@ -7,6 +8,7 @@ use log::info;
 
 mod libs;
 
+use libs::auth::validator;
 use libs::config::Config;
 use libs::translations::Translations;
 use libs::handlers::{index, portfolio, impressum, static_files};
@@ -46,11 +48,14 @@ async fn main() -> std::io::Result<()> {
     )?;
 
     HttpServer::new(move || {
+        let auth = HttpAuthentication::basic(validator);
+        
         App::new()
             .app_data(web::Data::new(config.clone()))
             .app_data(web::Data::new(tera.clone()))
             .app_data(web::Data::new(translations.clone()))
             .wrap(middleware::Logger::default())
+            .wrap(auth)
             .route("/", web::get().to(index))
             .route("/portfolio", web::get().to(portfolio))
             .route("/impressum", web::get().to(impressum))
