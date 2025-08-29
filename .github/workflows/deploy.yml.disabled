@@ -1,0 +1,20 @@
+# DISABLED - Using server-side git deployment instead
+# 
+# Current deployment method:
+# - Server checks GitHub every minute via cron
+# - Automatically pulls, builds and restarts on changes
+# - Script: /usr/local/bin/vvoss-deploy on server
+# - See: local/docs/server-jail-vvoss-deployment.md
+
+name: Deploy (DISABLED)
+
+on:
+  workflow_dispatch:  # Only manual trigger
+
+jobs:
+  deploy:
+    name: Disabled
+    runs-on: ubuntu-latest
+    steps:
+    - name: Note
+      run: echo "This workflow is disabled. Using server-side git deployment."
