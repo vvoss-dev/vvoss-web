@@ -6,7 +6,7 @@ edition = "2021"
 [dependencies]
 # Web framework with Unix socket support
 actix-web = "4.4"
-actix-web-httpauth = "0.8"
+# actix-web-httpauth = "0.8"  # Temporarily disabled
 tokio = { version = "1.35", features = ["full"] }
 
 # Template engine
