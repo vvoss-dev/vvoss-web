@@ -413,26 +413,19 @@ async fn main() -> std::io::Result<()> {
     )?;
 
     HttpServer::new(move || {
-        let app = App::new()
+        // For now, always enable auth - we can make it configurable later
+        let auth = HttpAuthentication::basic(validator);
+        
+        App::new()
             .app_data(web::Data::new(config.clone()))
             .app_data(web::Data::new(tera.clone()))
             .app_data(web::Data::new(translations.clone()))
-            .wrap(middleware::Logger::default());
-        
-        // Only add auth if enabled in config
-        if config.auth.enabled {
-            let auth = HttpAuthentication::basic(validator);
-            app.wrap(auth)
-                .route("/", web::get().to(index))
-                .route("/portfolio", web::get().to(portfolio))
-                .route("/impressum", web::get().to(impressum))
-                .route("/static/{filename:.*}", web::get().to(static_files))
-        } else {
-            app.route("/", web::get().to(index))
-                .route("/portfolio", web::get().to(portfolio))
-                .route("/impressum", web::get().to(impressum))
-                .route("/static/{filename:.*}", web::get().to(static_files))
-        }
+            .wrap(middleware::Logger::default())
+            .wrap(auth)
+            .route("/", web::get().to(index))
+            .route("/portfolio", web::get().to(portfolio))
+            .route("/impressum", web::get().to(impressum))
+            .route("/static/{filename:.*}", web::get().to(static_files))
     })
     .listen_uds(listener)?
     .run()
