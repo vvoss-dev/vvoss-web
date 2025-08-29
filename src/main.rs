@@ -404,24 +404,21 @@ async fn main() -> std::io::Result<()> {
     info!("Starting server on Unix socket: {}", socket_path);
 
     // Create Unix listener
-    let listener = UnixListener::bind(socket_path)?;
+    let listener = UnixListener::bind(&socket_path)?;
     
     // Set socket permissions for nginx access
     std::fs::set_permissions(
-        socket_path,
+        &socket_path,
         std::fs::Permissions::from_mode(0o666)
     )?;
 
     HttpServer::new(move || {
-        // For now, always enable auth - we can make it configurable later
-        let auth = HttpAuthentication::basic(validator);
-        
         App::new()
             .app_data(web::Data::new(config.clone()))
             .app_data(web::Data::new(tera.clone()))
             .app_data(web::Data::new(translations.clone()))
             .wrap(middleware::Logger::default())
-            .wrap(auth)
+            .wrap(HttpAuthentication::basic(validator))
             .route("/", web::get().to(index))
             .route("/portfolio", web::get().to(portfolio))
             .route("/impressum", web::get().to(impressum))
