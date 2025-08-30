@@ -14,12 +14,12 @@
  * 7. Interaction (cursor, user-select, pointer-events)
  */
 
-/* Layout Container */
-main {
+/* Container overrides for tablet */
+.header-content,
+.main-content,
+.footer-content {
     /* Box Model */
     max-width: 768px;
-    margin: 0 auto 0 auto;
-    padding: 2rem 2rem 2rem 2rem;
 }
 
 /* Navigation */

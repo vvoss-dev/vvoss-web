@@ -14,8 +14,17 @@
  * 7. Interaction (cursor, user-select, pointer-events)
  */
 
+/* Container overrides for phone */
+.header-content,
+.main-content,
+.footer-content {
+    /* Box Model */
+    max-width: 100%;
+    padding: 1rem;
+}
+
 /* Header - Stack on phone */
-header {
+.header-content {
     /* Positioning */
     grid-template-columns: 1fr;
     gap: 1rem;

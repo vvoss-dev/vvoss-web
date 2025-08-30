@@ -159,8 +159,37 @@ em, i {
     font-style: italic;
 }
 
-/* Header - Grid container */
+/* Content container - Centers content with max-width */
+.container {
+    /* Render Control */
+    display: grid;
+    
+    /* Positioning */
+    grid-template-columns: 1fr;
+    justify-content: center;
+    
+    /* Box Model */
+    width: 100%;
+    max-width: 1260px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* Header wrapper */
 header {
+    /* Render Control */
+    display: grid;
+    
+    /* Positioning */
+    grid-template-columns: 1fr;
+    justify-items: center;
+    
+    /* Visual Design */
+    border-bottom: 1px solid var(--color-border);
+}
+
+/* Header content */
+.header-content {
     /* Render Control */
     display: grid;
     
@@ -169,10 +198,9 @@ header {
     align-items: center;
     
     /* Box Model */
-    padding: 1rem 2rem 1rem 2rem;
-    
-    /* Visual Design */
-    border-bottom: 1px solid var(--color-border);
+    width: 100%;
+    max-width: 1260px;
+    padding: 1rem 2rem;
 }
 
 /* Logo */
@@ -262,8 +290,18 @@ article {
     text-transform: uppercase;
 }
 
-/* Main content area - Grid container */
+/* Main wrapper */
 main {
+    /* Render Control */
+    display: grid;
+    
+    /* Positioning */
+    grid-template-columns: 1fr;
+    justify-items: center;
+}
+
+/* Main content */
+.main-content {
     /* Render Control */
     display: grid;
     
@@ -272,18 +310,32 @@ main {
     gap: 2rem;
     
     /* Box Model */
+    width: 100%;
+    max-width: 1260px;
     padding: 2rem;
 }
 
-/* Footer */
+/* Footer wrapper */
 footer {
+    /* Render Control */
+    display: grid;
+    
+    /* Positioning */
+    grid-template-columns: 1fr;
+    justify-items: center;
+    
+    /* Visual Design */
+    border-top: 1px solid var(--color-border);
+}
+
+/* Footer content */
+.footer-content {
     /* Box Model */
-    padding: 2rem 2rem 2rem 2rem;
+    width: 100%;
+    max-width: 1260px;
+    padding: 2rem;
     
     /* Typography */
     text-align: center;
     font-weight: var(--font-weight-light);
-    
-    /* Visual Design */
-    border-top: 1px solid var(--color-border);
 }

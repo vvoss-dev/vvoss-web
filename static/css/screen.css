@@ -14,27 +14,12 @@
  * 7. Interaction (cursor, user-select, pointer-events)
  */
 
-/* Layout Container */
-main {
+/* Container overrides for screen */
+.header-content,
+.main-content,
+.footer-content {
     /* Box Model */
     max-width: 1024px;
-    margin: 0 auto 0 auto;
-    padding: 3rem 3rem 3rem 3rem;
-}
-
-/* Navigation */
-nav {
-    /* Render Control */
-    display: flex;
-    
-    /* Positioning */
-    justify-content: space-between;
-    align-items: center;
-    
-    /* Box Model */
-    max-width: 1024px;
-    margin: 0 auto 0 auto;
-    padding: 2rem 3rem 2rem 3rem;
 }
 
 nav ul {
