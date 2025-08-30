@@ -17,6 +17,7 @@
 /* Container overrides for phone - no max-width, full width */
 .container {
     /* Box Model */
+    margin: 1rem auto;
     padding: 1rem;
 }
 

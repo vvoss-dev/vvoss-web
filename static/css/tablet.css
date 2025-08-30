@@ -18,7 +18,7 @@
 .container {
     /* Box Model */
     max-width: 768px;
-    margin: 0 auto;
+    margin: 1rem auto;
 }
 
 /* Header container line-height for tablet */

@@ -18,7 +18,7 @@
 .container {
     /* Box Model */
     max-width: 1260px;
-    margin: 0 auto;
+    margin: 2rem auto;
 }
 
 /* Header container line-height for wide */
