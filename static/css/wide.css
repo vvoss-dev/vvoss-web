@@ -27,6 +27,13 @@ header .container {
     line-height: 10rem;
 }
 
+/* Footer - Ensure correct order for wide */
+footer .container {
+    /* Positioning */
+    grid-template-columns: 1fr 2fr;
+    grid-template-areas: "copyright tech";
+}
+
 /* Navigation spacing for wide */
 nav {
     /* Box Model */
@@ -55,8 +62,8 @@ p {
     max-width: 65ch;
     
     /* Typography */
-    font-size: 1.25rem;
-    line-height: 2;
+    font-size: 1rem;
+    line-height: 1.2rem;
 }
 
 /* Bauhaus Art Direction */

@@ -27,6 +27,13 @@ header .container {
     line-height: 6rem;
 }
 
+/* Footer - Ensure correct order for screen */
+footer .container {
+    /* Positioning */
+    grid-template-columns: 1fr 2fr;
+    grid-template-areas: "copyright tech";
+}
+
 /* Typography Scale */
 h1 {
     /* Typography */
@@ -44,8 +51,8 @@ h2 {
 
 p {
     /* Typography */
-    font-size: 1.125rem;
-    line-height: 1.8;
+    font-size: 1rem;
+    line-height: 1.2;
 }
 
 /* Bauhaus Elements */

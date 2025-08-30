@@ -132,7 +132,7 @@ h6 {
 /* Text elements */
 p {
     /* Typography */
-    line-height: 1.6;
+    line-height: 1.1;
 }
 
 a {
@@ -318,8 +318,8 @@ footer .container {
     display: grid;
     
     /* Positioning */
-    grid-template-columns: 2fr 1fr;
-    grid-template-areas: "tech copyright";
+    grid-template-columns: 1fr 2fr;
+    grid-template-areas: "copyright tech";
     gap: 2rem;
     align-items: center;
     
