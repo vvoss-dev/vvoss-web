@@ -324,67 +324,27 @@ footer .container {
 
 /* Loading Overlay */
 #loading-overlay {
-    /* Render Control */
-    display: flex;
-    opacity: 1;
-    
     /* Positioning */
     position: fixed;
     top: 0;
-    right: 0;
-    bottom: 0;
     left: 0;
+    right: 0;
     z-index: 9999;
-    align-items: center;
-    justify-content: center;
+    
+    /* Box Model */
+    height: 3px;
+    width: 100%;
     
     /* Visual Design */
-    background: var(--color-bg);
+    background: transparent;
     
     /* Effects */
-    transition: opacity 300ms ease;
-}
-
-#loading-overlay.loaded {
-    /* Effects */
-    opacity: 0;
     pointer-events: none;
 }
 
-.loading-content {
+#loading-overlay.loaded {
     /* Render Control */
-    display: flex;
-    
-    /* Positioning */
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    
-    /* Box Model */
-    width: 200px;
-}
-
-.loading-label {
-    /* Typography */
-    font-family: Helvetica, Verdana, sans-serif;
-    font-size: 0.875rem;
-    font-weight: 500;
-    text-transform: lowercase;
-    color: var(--color-text-light);
-}
-
-.loading-bar {
-    /* Render Control */
-    display: block;
-    
-    /* Box Model */
-    width: 100%;
-    height: 6px;
-    
-    /* Visual Design */
-    background: oklch(85% 0.01 0); /* Light gray to show full length */
-    border-radius: 5px;
-    overflow: hidden;
+    display: none;
 }
 
 .loading-progress {
@@ -393,7 +353,7 @@ footer .container {
     
     /* Box Model */
     width: 0%;
-    height: 100%;
+    height: 3px;
     
     /* Visual Design */
     background: var(--color-tertiary);

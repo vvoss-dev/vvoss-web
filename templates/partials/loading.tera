@@ -1,11 +1,6 @@
 <!-- Loading overlay -->
 <div id="loading-overlay">
-    <div class="loading-content">
-        <div class="loading-label">{{ t["loading.assets"] }}</div>
-        <div class="loading-bar">
-            <div class="loading-progress" id="loading-progress"></div>
-        </div>
-    </div>
+    <div class="loading-progress" id="loading-progress"></div>
 </div>
 
 <!-- Asset loading script -->
