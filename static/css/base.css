@@ -314,12 +314,63 @@ footer {
 
 /* Footer content container */
 footer .container {
+    /* Render Control */
+    display: grid;
+    
+    /* Positioning */
+    grid-template-columns: 2fr 1fr;
+    grid-template-areas: "tech copyright";
+    gap: 2rem;
+    align-items: center;
+    
     /* Box Model */
     width: 100%;
+}
+
+/* Footer tech logos */
+.footer-tech {
+    /* Render Control */
+    display: grid;
+    
+    /* Positioning */
+    grid-area: tech;
+    grid-template-columns: repeat(auto-fit, minmax(2rem, 1fr));
+    gap: 1rem;
+    align-items: center;
+    justify-items: center;
+}
+
+.footer-tech img {
+    /* Box Model */
+    width: 100%;
+    max-width: 3rem;
+    height: auto;
+    
+    /* Effects */
+    opacity: 0.6;
+    transition: opacity 200ms ease;
+}
+
+.footer-tech img:hover {
+    /* Effects */
+    opacity: 1;
+}
+
+/* Footer copyright */
+.footer-copyright {
+    /* Positioning */
+    grid-area: copyright;
     
     /* Typography */
-    text-align: center;
+    text-align: left;
     font-weight: var(--font-weight-light);
+    font-size: 0.875rem;
+    line-height: 1.5;
+}
+
+.footer-copyright p {
+    /* Box Model */
+    margin: 0;
 }
 
 /* Hide native scrollbar */

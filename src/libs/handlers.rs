@@ -96,9 +96,19 @@ pub async fn render_with_client_detection(
         }
     };
     
+    // Get latest update date from git log or use current date as fallback
+    let latest_update = std::process::Command::new("git")
+        .args(&["log", "-1", "--format=%cd", "--date=short"])
+        .output()
+        .ok()
+        .and_then(|output| String::from_utf8(output.stdout).ok())
+        .map(|s| s.trim().to_string())
+        .unwrap_or_else(|| chrono::Local::now().format("%Y-%m-%d").to_string());
+    
     // Create page info object
     let page_info = serde_json::json!({
-        "languages": config.languages.available.clone()
+        "languages": config.languages.available.clone(),
+        "latest_update": latest_update
     });
     
     let mut context = Context::new();
@@ -158,9 +168,19 @@ pub async fn render_with_lang(
     // Use language from URL
     client.lang = lang.to_string();
     
+    // Get latest update date from git log or use current date as fallback
+    let latest_update = std::process::Command::new("git")
+        .args(&["log", "-1", "--format=%cd", "--date=short"])
+        .output()
+        .ok()
+        .and_then(|output| String::from_utf8(output.stdout).ok())
+        .map(|s| s.trim().to_string())
+        .unwrap_or_else(|| chrono::Local::now().format("%Y-%m-%d").to_string());
+    
     // Create page info object
     let page_info = serde_json::json!({
-        "languages": config.languages.available.clone()
+        "languages": config.languages.available.clone(),
+        "latest_update": latest_update
     });
     
     let mut context = Context::new();

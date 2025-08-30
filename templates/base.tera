@@ -47,7 +47,21 @@
     
     <footer>
         <div class="container">
-            <p>&copy; {{ current_year }} vvoss.dev - {{ t["page.copyright"] }}</p>
+            <div class="footer-tech">
+                <img src="/static/img/logo_freebsd.svg" alt="FreeBSD" />
+                <img src="/static/img/logo_nginx.svg" alt="Nginx" />
+                <img src="/static/img/logo_rust.svg" alt="Rust" />
+                <img src="/static/img/logo_html5.svg" alt="HTML5" />
+                <img src="/static/img/logo_css3.svg" alt="CSS3" />
+                <img src="/static/img/logo_javascript.svg" alt="JavaScript" />
+            </div>
+            <div class="footer-copyright">
+                <p>
+                    &copy; {{ current_year }} vivian burkhard voss<br>
+                    {{ t["page.copyright"] }}<br>
+                    {{ t["page.latest_update"] }}: {{ page.latest_update }}
+                </p>
+            </div>
         </div>
     </footer>
     

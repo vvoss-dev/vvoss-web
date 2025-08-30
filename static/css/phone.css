@@ -47,6 +47,28 @@ nav {
     gap: 0.5rem;
 }
 
+/* Footer - Stack vertically on phone, tech on top */
+footer .container {
+    /* Positioning */
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+        "tech"
+        "copyright";
+    gap: 1.5rem;
+}
+
+/* Footer tech logos - Center on mobile */
+.footer-tech {
+    /* Positioning */
+    justify-content: center;
+}
+
+/* Footer copyright - Center text on mobile */
+.footer-copyright {
+    /* Typography */
+    text-align: center;
+}
+
 /* Typography Scale */
 h1 {
     /* Typography */
