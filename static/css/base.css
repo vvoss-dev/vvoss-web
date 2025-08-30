@@ -174,7 +174,7 @@ header {
 }
 
 /* Header content */
-.header-content {
+header.container {
     /* Render Control */
     display: grid;
     
@@ -285,7 +285,7 @@ main {
 }
 
 /* Main content */
-.main-content {
+main.container {
     /* Render Control */
     display: grid;
     
@@ -312,7 +312,7 @@ footer {
 }
 
 /* Footer content */
-.footer-content {
+footer.container {
     /* Box Model */
     width: 100%;
     padding: 1rem;

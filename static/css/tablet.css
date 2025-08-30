@@ -15,9 +15,7 @@
  */
 
 /* Container overrides for tablet */
-.header-content,
-.main-content,
-.footer-content {
+.container {
     /* Box Model */
     max-width: 768px;
     margin: 0 auto;

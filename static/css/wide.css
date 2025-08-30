@@ -15,9 +15,7 @@
  */
 
 /* Container overrides for wide screens */
-.header-content,
-.main-content,
-.footer-content {
+.container {
     /* Box Model */
     max-width: 1260px;
     margin: 0 auto;

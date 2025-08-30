@@ -15,15 +15,13 @@
  */
 
 /* Container overrides for phone - no max-width, full width */
-.header-content,
-.main-content,
-.footer-content {
+.container {
     /* Box Model */
     padding: 1rem;
 }
 
 /* Header - Stack on phone */
-.header-content {
+header.container {
     /* Positioning */
     grid-template-columns: 1fr;
     gap: 1rem;
