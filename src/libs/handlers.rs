@@ -7,7 +7,20 @@ use super::client::{detect_client_info, parse_screen_info, is_bot_request, gener
 use super::translations::Translations;
 use super::config::Config;
 
-/// Generic page handler - DRY principle
+/// Generic page handler with language from URL
+pub async fn render_page_with_lang(
+    req: HttpRequest,
+    tmpl: web::Data<Tera>,
+    translations: web::Data<Translations>,
+    config: web::Data<Config>,
+    template_path: &str,
+    current_page: &str,
+    lang: &str,
+) -> Result<HttpResponse> {
+    render_with_lang(req, tmpl, translations, config, template_path, current_page, lang).await
+}
+
+/// Generic page handler - DRY principle (deprecated, kept for compatibility)
 pub async fn render_page(
     req: HttpRequest,
     tmpl: web::Data<Tera>,
@@ -123,6 +136,65 @@ pub async fn render_with_client_detection(
     Ok(response.content_type("text/html").body(rendered))
 }
 
+/// Render page with language from URL
+pub async fn render_with_lang(
+    req: HttpRequest,
+    tmpl: web::Data<Tera>,
+    translations: web::Data<Translations>,
+    config: web::Data<Config>,
+    template_name: &str,
+    current_page: &str,
+    lang: &str,
+) -> Result<HttpResponse> {
+    // Skip detection for bots
+    if !is_bot_request(&req) && parse_screen_info(&req).is_none() {
+        return Ok(HttpResponse::Ok()
+            .content_type("text/html")
+            .body(generate_screen_detection_html()));
+    }
+    
+    let mut client = detect_client_info(&req);
+    
+    // Use language from URL
+    client.lang = lang.to_string();
+    
+    // Create page info object
+    let page_info = serde_json::json!({
+        "languages": config.languages.available.clone()
+    });
+    
+    let mut context = Context::new();
+    context.insert("current_year", &chrono::Local::now().year());
+    context.insert("client", &client);
+    context.insert("page", &page_info);
+    context.insert("current_page", &current_page);
+    context.insert("current_lang", &lang);
+    
+    // Create a simple translation map for the detected locale
+    let locale_key = if lang == "de" { "de-DE" } else { "en-EN" };
+    let t = translations.strings.get(locale_key)
+        .or_else(|| translations.strings.get("en-EN"))
+        .cloned()
+        .unwrap_or_default();
+    context.insert("t", &t);
+
+    let rendered = tmpl
+        .render(template_name, &context)
+        .map_err(|e| actix_web::error::ErrorInternalServerError(e))?;
+
+    // Set language cookie
+    Ok(HttpResponse::Ok()
+        .cookie(
+            actix_web::cookie::Cookie::build("lang", lang.to_string())
+                .path("/")
+                .max_age(actix_web::cookie::time::Duration::days(365))
+                .same_site(actix_web::cookie::SameSite::Lax)
+                .finish()
+        )
+        .content_type("text/html")
+        .body(rendered))
+}
+
 /// Serve static files (CSS, JS, images, fonts)
 pub async fn static_files(path: web::Path<String>) -> Result<HttpResponse> {
     let file_path = format!("static/{}", path);
@@ -151,17 +223,72 @@ pub async fn static_files(path: web::Path<String>) -> Result<HttpResponse> {
     }
 }
 
+// Redirect to language-specific URL
+pub async fn redirect_to_language(
+    req: HttpRequest,
+    config: web::Data<Config>,
+) -> Result<HttpResponse> {
+    // Check for language cookie
+    let mut lang = "en".to_string(); // Default
+    
+    if let Some(cookie_header) = req.headers().get("cookie") {
+        if let Ok(cookies_str) = cookie_header.to_str() {
+            for cookie in cookies_str.split(';') {
+                let trimmed = cookie.trim();
+                if let Some(value) = trimmed.strip_prefix("lang=") {
+                    let cookie_lang = value.to_lowercase();
+                    if config.languages.available.contains(&cookie_lang) {
+                        lang = cookie_lang;
+                        break;
+                    }
+                }
+            }
+        }
+    }
+    
+    // If no cookie, detect from browser
+    if lang == "en" {
+        if let Some(accept_lang) = req.headers().get("accept-language") {
+            if let Ok(lang_str) = accept_lang.to_str() {
+                for lang_part in lang_str.split(',') {
+                    let detected = lang_part.split(';').next().unwrap_or("").trim();
+                    let lang_code = detected[..2.min(detected.len())].to_lowercase();
+                    if config.languages.available.contains(&lang_code) {
+                        lang = lang_code;
+                        break;
+                    }
+                }
+            }
+        }
+    }
+    
+    // Get the current path
+    let path = req.path();
+    let redirect_url = format!("/{}{}", lang, path);
+    
+    Ok(HttpResponse::Found()
+        .append_header(("Location", redirect_url))
+        .finish())
+}
+
 // Route definitions as a macro for DRY
 #[macro_export]
 macro_rules! page_handler {
     ($name:ident, $template:expr, $page_name:expr) => {
         pub async fn $name(
             req: HttpRequest,
+            lang: web::Path<String>,
             tmpl: web::Data<Tera>,
             translations: web::Data<Translations>,
             config: web::Data<Config>,
         ) -> Result<HttpResponse> {
-            render_page(req, tmpl, translations, config, $template, $page_name).await
+            // Validate language
+            let lang_str = lang.into_inner();
+            if !config.languages.available.contains(&lang_str) {
+                return Ok(HttpResponse::NotFound().finish());
+            }
+            
+            render_page_with_lang(req, tmpl, translations, config, $template, $page_name, &lang_str).await
         }
     };
 }

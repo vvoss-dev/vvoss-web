@@ -24,15 +24,19 @@
 </head>
 <body>
     <header role="banner">
-        <a href="/" class="logo" aria-label="{{ t['page.home'] }}">vivian voss</a>
+        <a href="/{{ client.lang }}/" class="logo" aria-label="{{ t['page.home'] }}">vivian voss</a>
         <nav role="navigation" aria-label="{{ t['nav.main'] }}">
-            <a href="/" {% if current_page == 'index' %}aria-current="page"{% endif %}>{{ t["nav.home"] }}</a>
-            <a href="/portfolio" {% if current_page == 'portfolio' %}aria-current="page"{% endif %}>{{ t["nav.portfolio"] }}</a>
-            <a href="/knowledge" {% if current_page == 'knowledge' %}aria-current="page"{% endif %}>{{ t["nav.knowledge"] }}</a>
-            <a href="/impressum" {% if current_page == 'impressum' %}aria-current="page"{% endif %}>{{ t["nav.impressum"] }}</a>
+            <a href="/{{ client.lang }}/" {% if current_page == 'index' %}aria-current="page"{% endif %}>{{ t["nav.home"] }}</a>
+            <a href="/{{ client.lang }}/portfolio" {% if current_page == 'portfolio' %}aria-current="page"{% endif %}>{{ t["nav.portfolio"] }}</a>
+            <a href="/{{ client.lang }}/knowledge" {% if current_page == 'knowledge' %}aria-current="page"{% endif %}>{{ t["nav.knowledge"] }}</a>
+            <a href="/{{ client.lang }}/impressum" {% if current_page == 'impressum' %}aria-current="page"{% endif %}>{{ t["nav.impressum"] }}</a>
             {% for l in page.languages %}
                 {% if l != client.lang %}
-                    <a href="?lang={{ l }}" class="lang-switch" aria-label="{{ t['nav.switch_language'] }}" lang="{{ l }}">{{ l }}</a>
+                    {% if current_page == 'index' %}
+                        <a href="/{{ l }}/" class="lang-switch" aria-label="{{ t['nav.switch_language'] }}" lang="{{ l }}">{{ l }}</a>
+                    {% else %}
+                        <a href="/{{ l }}/{{ current_page }}" class="lang-switch" aria-label="{{ t['nav.switch_language'] }}" lang="{{ l }}">{{ l }}</a>
+                    {% endif %}
                 {% endif %}
             {% endfor %}
         </nav>

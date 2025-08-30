@@ -11,7 +11,7 @@ mod libs;
 use libs::auth::validator;
 use libs::config::Config;
 use libs::translations::Translations;
-use libs::handlers::{index, portfolio, knowledge, impressum, static_files};
+use libs::handlers::{index, portfolio, knowledge, impressum, static_files, redirect_to_language};
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
@@ -56,10 +56,19 @@ async fn main() -> std::io::Result<()> {
             .app_data(web::Data::new(translations.clone()))
             .wrap(middleware::Logger::default())
             .wrap(auth)
-            .route("/", web::get().to(index))
-            .route("/portfolio", web::get().to(portfolio))
-            .route("/knowledge", web::get().to(knowledge))
-            .route("/impressum", web::get().to(impressum))
+            // Redirect root to default language
+            .route("/", web::get().to(redirect_to_language))
+            .route("/portfolio", web::get().to(redirect_to_language))
+            .route("/knowledge", web::get().to(redirect_to_language))
+            .route("/impressum", web::get().to(redirect_to_language))
+            
+            // Language-specific routes
+            .route("/{lang}/", web::get().to(index))
+            .route("/{lang}/portfolio", web::get().to(portfolio))
+            .route("/{lang}/knowledge", web::get().to(knowledge))
+            .route("/{lang}/impressum", web::get().to(impressum))
+            
+            // Static files (no language prefix)
             .route("/static/{filename:.*}", web::get().to(static_files))
     })
     .listen_uds(listener)?
