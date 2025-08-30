@@ -188,12 +188,28 @@ header .container {
 
 /* Logo */
 .logo {
+    /* Render Control */
+    display: inline-block;
+    
+    /* Typography */
+    text-decoration: none;
+    color: var(--color-primary);
+    line-height: 1;
+}
+
+.logo-name {
     /* Typography */
     font-size: 5rem;
     font-weight: var(--font-weight-bold);
     letter-spacing: -0.07em;
-    text-decoration: none;
-    color: var(--color-primary);
+}
+
+.logo-profession {
+    /* Typography */
+    font-size: 1.45rem;
+    font-weight: var(--font-weight-light);
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
 }
 
 /* Navigation - Flat structure */
@@ -395,7 +411,7 @@ footer .container {
     padding: 1rem 3rem 1rem 1rem;
     
     /* Visual Design */
-    border-right: 2px solid var(--color-gray);
+    border-right: 1px solid var(--color-border);
 }
 
 /* Footer device info */

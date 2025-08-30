@@ -20,7 +20,10 @@
     
     <header role="banner">
         <div class="container">
-            <a href="/{{ client.lang }}/" class="logo" aria-label="{{ t['page.home'] }}">vivian voss</a>
+            <a href="/{{ client.lang }}/" class="logo" aria-label="{{ t['page.home'] }}">
+                <span class="logo-name">vivian voss</span><br>
+                <span class="logo-profession">principal software architect</span>
+            </a>
             <nav role="navigation" aria-label="{{ t['nav.main'] }}">
                 <a href="/{{ client.lang }}/" {% if current_page == 'index' %}aria-current="page"{% endif %}>{{ t["nav.home"] }}</a>
                 <a href="/{{ client.lang }}/portfolio" {% if current_page == 'portfolio' %}aria-current="page"{% endif %}>{{ t["nav.portfolio"] }}</a>
