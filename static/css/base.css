@@ -198,19 +198,22 @@ nav {
 }
 
 nav a {
+    /* Box Model */
+    padding-left: 0.5rem;
+    
     /* Typography */
     font-weight: var(--font-weight-medium);
     text-decoration: none;
     color: var(--color-primary);
+    
+    /* Visual Design */
+    border-left: 2px solid transparent;
     
     /* Effects */
     transition: border-left 200ms ease;
 }
 
 nav a:hover {
-    /* Box Model */
-    padding-left: 0.5rem;
-    
     /* Visual Design */
     border-left: 2px solid var(--color-tertiary);
 }
