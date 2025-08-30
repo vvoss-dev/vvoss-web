@@ -14,8 +14,9 @@ pub async fn render_page(
     translations: web::Data<Translations>,
     config: web::Data<Config>,
     template_path: &str,
+    current_page: &str,
 ) -> Result<HttpResponse> {
-    render_with_client_detection(req, tmpl, translations, config, template_path).await
+    render_with_client_detection(req, tmpl, translations, config, template_path, current_page).await
 }
 
 /// Render page with client detection
@@ -25,6 +26,7 @@ pub async fn render_with_client_detection(
     translations: web::Data<Translations>,
     config: web::Data<Config>,
     template_name: &str,
+    current_page: &str,
 ) -> Result<HttpResponse> {
     // Skip detection for bots
     if !is_bot_request(&req) && parse_screen_info(&req).is_none() {
@@ -52,6 +54,7 @@ pub async fn render_with_client_detection(
     context.insert("current_year", &chrono::Local::now().year());
     context.insert("client", &client);
     context.insert("page", &page_info);
+    context.insert("current_page", &current_page);
     
     // Create a simple translation map for the detected locale
     let locale_key = if client.lang == "de" { "de-DE" } else { "en-EN" };
@@ -99,20 +102,20 @@ pub async fn static_files(path: web::Path<String>) -> Result<HttpResponse> {
 // Route definitions as a macro for DRY
 #[macro_export]
 macro_rules! page_handler {
-    ($name:ident, $template:expr) => {
+    ($name:ident, $template:expr, $page_name:expr) => {
         pub async fn $name(
             req: HttpRequest,
             tmpl: web::Data<Tera>,
             translations: web::Data<Translations>,
             config: web::Data<Config>,
         ) -> Result<HttpResponse> {
-            render_page(req, tmpl, translations, config, $template).await
+            render_page(req, tmpl, translations, config, $template, $page_name).await
         }
     };
 }
 
 // Generate all page handlers
-page_handler!(index, "partials/index.tera");
-page_handler!(portfolio, "partials/portfolio.tera");
-page_handler!(knowledge, "partials/knowledge.tera");
-page_handler!(impressum, "partials/impressum.tera");
+page_handler!(index, "partials/index.tera", "index");
+page_handler!(portfolio, "partials/portfolio.tera", "portfolio");
+page_handler!(knowledge, "partials/knowledge.tera", "knowledge");
+page_handler!(impressum, "partials/impressum.tera", "impressum");
