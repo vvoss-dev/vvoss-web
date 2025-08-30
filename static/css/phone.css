@@ -48,12 +48,13 @@ nav {
     gap: 0.5rem;
 }
 
-/* Footer - Stack vertically on phone, tech on top */
+/* Footer - Stack vertically on phone */
 footer .container {
     /* Positioning */
     grid-template-columns: 1fr;
     grid-template-areas: 
         "tech"
+        "device"
         "copyright";
     gap: 1.5rem;
 }
@@ -79,7 +80,21 @@ footer .container {
 
 .footer-copyright p {
     /* Box Model */
-    padding-right: 0;
+    padding: 1rem;
+    
+    /* Visual Design */
+    border-right: none;
+}
+
+/* Footer device - Center on mobile */
+.footer-device {
+    /* Typography */
+    text-align: center;
+}
+
+.footer-device p {
+    /* Box Model */
+    padding: 1rem;
     
     /* Visual Design */
     border-right: none;

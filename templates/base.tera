@@ -79,6 +79,14 @@
                     {{ t["page.latest_update"] }}: {{ page.latest_update }}
                 </p>
             </div>
+            <div class="footer-device">
+                <p>
+                    language: {{ client.lang }}<br>
+                    device: {{ client.device }}<br>
+                    viewport: {{ client.screen.width }}x{{ client.screen.height }}<br>
+                    pixel ratio: {{ client.screen.pixel_ratio }}
+                </p>
+            </div>
         </div>
     </footer>
     

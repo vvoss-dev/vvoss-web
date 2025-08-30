@@ -318,8 +318,8 @@ footer .container {
     display: grid;
     
     /* Positioning */
-    grid-template-columns: 1fr 1fr;
-    grid-template-areas: "copyright tech";
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas: "copyright device tech";
     gap: 2rem;
     align-items: center;
     
@@ -390,7 +390,28 @@ footer .container {
 .footer-copyright p {
     /* Box Model */
     margin: 0;
-    padding-right: 1rem;
+    padding: 1rem;
+    
+    /* Visual Design */
+    border-right: 2px solid var(--color-primary);
+}
+
+/* Footer device info */
+.footer-device {
+    /* Positioning */
+    grid-area: device;
+    
+    /* Typography */
+    text-align: right;
+    font-weight: var(--font-weight-light);
+    font-size: 0.875rem;
+    line-height: 1.5;
+}
+
+.footer-device p {
+    /* Box Model */
+    margin: 0;
+    padding: 1rem;
     
     /* Visual Design */
     border-right: 2px solid var(--color-primary);

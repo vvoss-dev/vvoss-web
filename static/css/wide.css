@@ -24,8 +24,8 @@
 /* Footer - Ensure correct order for wide */
 footer .container {
     /* Positioning */
-    grid-template-columns: 1fr 1fr;
-    grid-template-areas: "copyright tech";
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas: "copyright device tech";
 }
 
 /* Navigation spacing for wide */

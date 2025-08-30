@@ -24,8 +24,8 @@
 /* Footer - Ensure correct order for screen */
 footer .container {
     /* Positioning */
-    grid-template-columns: 1fr 1fr;
-    grid-template-areas: "copyright tech";
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas: "copyright device tech";
 }
 
 /* Typography Scale */
