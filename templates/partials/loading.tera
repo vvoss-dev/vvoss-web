@@ -12,18 +12,18 @@
 <script>
 (function() {
     // Check if this is first visit or force reload
-    const isReload = performance.navigation && performance.navigation.type === 1;
+    // Use modern Navigation Timing API
+    const navEntries = performance.getEntriesByType('navigation');
+    const isReload = navEntries.length > 0 && navEntries[0].type === 'reload';
     const isFirstVisit = !sessionStorage.getItem('assetsLoaded');
     const shouldShowLoader = isFirstVisit || isReload;
     
     const overlay = document.getElementById('loading-overlay');
     
     // If assets are already cached, hide overlay immediately
-    if (!shouldShowLoader) {
-        if (overlay) {
-            overlay.style.display = 'none';
-            overlay.remove();
-        }
+    if (!shouldShowLoader && overlay) {
+        overlay.style.display = 'none';
+        overlay.remove();
         return; // Exit early, no need to track loading
     }
     
