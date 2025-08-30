@@ -209,7 +209,7 @@ header .container {
 
 .logo-profession {
     /* Typography */
-    font-size: 0.95rem;
+    font-size: 1.155rem;
     font-weight: var(--font-weight-light);
     letter-spacing: 0.24em;
 }
