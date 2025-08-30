@@ -329,27 +329,27 @@ footer .container {
     top: 0;
     left: 0;
     right: 0;
+    bottom: 0;
     z-index: 9999;
     
-    /* Box Model */
-    height: 3px;
-    width: 100%;
-    
     /* Visual Design */
-    background: transparent;
+    background: var(--color-bg);
     
     /* Effects */
-    pointer-events: none;
+    transition: opacity 300ms ease;
 }
 
 #loading-overlay.loaded {
-    /* Render Control */
-    display: none;
+    /* Effects */
+    opacity: 0;
+    pointer-events: none;
 }
 
 .loading-progress {
-    /* Render Control */
-    display: block;
+    /* Positioning */
+    position: absolute;
+    top: 0;
+    left: 0;
     
     /* Box Model */
     width: 0%;
