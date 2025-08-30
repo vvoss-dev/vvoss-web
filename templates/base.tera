@@ -10,15 +10,7 @@
     
     <link rel="stylesheet" href="/static/css/fonts.css">
     <link rel="stylesheet" href="/static/css/base.css">
-    {% if client.breakpoint == "phone" %}
-    <link rel="stylesheet" href="/static/css/phone.css">
-    {% elif client.breakpoint == "tablet" %}
-    <link rel="stylesheet" href="/static/css/tablet.css">
-    {% elif client.breakpoint == "screen" %}
-    <link rel="stylesheet" href="/static/css/screen.css">
-    {% else %}
-    <link rel="stylesheet" href="/static/css/wide.css">
-    {% endif %}
+    <link rel="stylesheet" href="/static/css/{{ client.breakpoint }}.css">
     
     {% block head %}{% endblock %}
 </head>
