@@ -1,0 +1,91 @@
+<!-- Loading overlay -->
+<div id="loading-overlay">
+    <div class="loading-content">
+        <div class="loading-label">{{ t["loading.assets"] }}</div>
+        <div class="loading-bar">
+            <div class="loading-progress" id="loading-progress"></div>
+        </div>
+    </div>
+</div>
+
+<!-- Asset loading script -->
+<script>
+(function() {
+    // Track loading of critical assets
+    const assetsToLoad = [];
+    let loadedAssets = 0;
+    
+    // Get all stylesheets
+    const stylesheets = document.querySelectorAll('link[rel="stylesheet"]');
+    stylesheets.forEach(sheet => {
+        assetsToLoad.push(sheet.href);
+    });
+    
+    // Track fonts (Inter Roman and Italic variable fonts)
+    const fontsToCheck = [
+        '/static/fonts/Inter-Roman.var.woff2',
+        '/static/fonts/Inter-Italic.var.woff2'
+    ];
+    
+    fontsToCheck.forEach(fontUrl => {
+        assetsToLoad.push(fontUrl);
+    });
+    
+    const totalAssets = assetsToLoad.length;
+    const progressBar = document.getElementById('loading-progress');
+    const overlay = document.getElementById('loading-overlay');
+    
+    function updateProgress() {
+        loadedAssets++;
+        const percentage = (loadedAssets / totalAssets) * 100;
+        if (progressBar) {
+            progressBar.style.width = percentage + '%';
+        }
+        
+        if (loadedAssets >= totalAssets) {
+            // All assets loaded, hide overlay
+            setTimeout(() => {
+                if (overlay) {
+                    overlay.classList.add('loaded');
+                    // Remove from DOM after transition
+                    setTimeout(() => {
+                        overlay.remove();
+                    }, 300);
+                }
+            }, 100); // Small delay for smoother experience
+        }
+    }
+    
+    // Check stylesheets
+    stylesheets.forEach(sheet => {
+        if (sheet.sheet) {
+            // Already loaded
+            updateProgress();
+        } else {
+            sheet.addEventListener('load', updateProgress);
+            sheet.addEventListener('error', updateProgress); // Count errors too
+        }
+    });
+    
+    // Check fonts with Font Face API
+    if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(() => {
+            // Both variable fonts count as loaded when fonts are ready
+            fontsToCheck.forEach(() => updateProgress());
+        });
+    } else {
+        // Fallback: just wait a bit for fonts
+        setTimeout(() => {
+            fontsToCheck.forEach(() => updateProgress());
+        }, 500);
+    }
+    
+    // Fallback: hide overlay after 3 seconds regardless
+    setTimeout(() => {
+        if (overlay && !overlay.classList.contains('loaded')) {
+            overlay.classList.add('loaded');
+            setTimeout(() => overlay.remove(), 300);
+        }
+    }, 3000);
+})();
+</script>

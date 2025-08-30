@@ -321,3 +321,82 @@ footer .container {
     text-align: center;
     font-weight: var(--font-weight-light);
 }
+
+/* Loading Overlay */
+#loading-overlay {
+    /* Render Control */
+    display: flex;
+    opacity: 1;
+    
+    /* Positioning */
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    
+    /* Visual Design */
+    background: var(--color-bg);
+    
+    /* Effects */
+    transition: opacity 300ms ease;
+}
+
+#loading-overlay.loaded {
+    /* Effects */
+    opacity: 0;
+    pointer-events: none;
+}
+
+.loading-content {
+    /* Render Control */
+    display: flex;
+    
+    /* Positioning */
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    
+    /* Box Model */
+    width: 200px;
+}
+
+.loading-label {
+    /* Typography */
+    font-size: 0.875rem;
+    font-weight: var(--font-weight-medium);
+    text-transform: lowercase;
+    color: var(--color-text-light);
+}
+
+.loading-bar {
+    /* Render Control */
+    display: block;
+    
+    /* Box Model */
+    width: 100%;
+    height: 6px;
+    
+    /* Visual Design */
+    background: var(--color-border);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.loading-progress {
+    /* Render Control */
+    display: block;
+    
+    /* Box Model */
+    width: 0%;
+    height: 100%;
+    
+    /* Visual Design */
+    background: var(--color-tertiary);
+    
+    /* Effects */
+    transition: width 200ms ease;
+}
