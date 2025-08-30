@@ -81,12 +81,12 @@
   src: url('/static/fonts/Inter_18pt-LightItalic.woff2') format('woff2');
 }
 
-/* Regular (400) */
+/* Regular (400) - Critical font, block to prevent FOUT */
 @font-face {
   font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
-  font-display: swap;
+  font-display: block;
   src: url('/static/fonts/Inter_18pt-Regular.woff2') format('woff2');
 }
 
@@ -98,12 +98,12 @@
   src: url('/static/fonts/Inter_18pt-Italic.woff2') format('woff2');
 }
 
-/* Medium (500) */
+/* Medium (500) - Critical font, block to prevent FOUT */
 @font-face {
   font-family: 'Inter';
   font-style: normal;
   font-weight: 500;
-  font-display: swap;
+  font-display: block;
   src: url('/static/fonts/Inter_18pt-Medium.woff2') format('woff2');
 }
 
@@ -132,12 +132,12 @@
   src: url('/static/fonts/Inter_18pt-SemiBoldItalic.woff2') format('woff2');
 }
 
-/* Bold (700) */
+/* Bold (700) - Critical font, block to prevent FOUT */
 @font-face {
   font-family: 'Inter';
   font-style: normal;
   font-weight: 700;
-  font-display: swap;
+  font-display: block;
   src: url('/static/fonts/Inter_18pt-Bold.woff2') format('woff2');
 }
 
