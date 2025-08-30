@@ -212,7 +212,6 @@ header .container {
     font-size: 0.95rem;
     font-weight: var(--font-weight-light);
     letter-spacing: 0.24em;
-    text-transform: uppercase;
 }
 
 /* Navigation - Flat structure */
