@@ -6,9 +6,13 @@
 <!-- Asset loading script -->
 <script>
 (function() {
+    // Check if this is a force reload (Ctrl+F5 / Cmd+Shift+R)
+    const isForceReload = performance.getEntriesByType('navigation')[0]?.type === 'reload' && 
+                          !document.referrer;
+    
     // Check if we already loaded once in this session
-    if (sessionStorage.getItem('assetsLoaded') === 'true') {
-        // Already loaded in this session, skip loader completely
+    if (!isForceReload && sessionStorage.getItem('assetsLoaded') === 'true') {
+        // Already loaded in this session and not a force reload, skip loader
         return;
     }
     
