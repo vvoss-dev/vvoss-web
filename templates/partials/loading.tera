@@ -6,6 +6,12 @@
 <!-- Asset loading script -->
 <script>
 (function() {
+    // Check if we already loaded once in this session
+    if (sessionStorage.getItem('assetsLoaded') === 'true') {
+        // Already loaded in this session, skip loader completely
+        return;
+    }
+    
     const overlay = document.getElementById('loading-overlay');
     const progressBar = document.getElementById('loading-progress');
     
@@ -13,29 +19,7 @@
         return;
     }
     
-    // Quick check if we need loading screen at all
-    const stylesheets = document.querySelectorAll('link[rel="stylesheet"]');
-    let needsLoading = false;
-    
-    // Check if any stylesheet is not loaded yet
-    stylesheets.forEach(sheet => {
-        if (!sheet.sheet) {
-            needsLoading = true;
-        }
-    });
-    
-    // Check fonts - if fonts aren't ready, we need loading
-    if (document.fonts && !document.fonts.check('16px Inter')) {
-        needsLoading = true;
-    }
-    
-    // Only show loader if assets actually need loading
-    if (!needsLoading) {
-        // Everything cached, don't show loader
-        return;
-    }
-    
-    // Assets need loading, show the overlay
+    // Show the overlay for first load
     overlay.classList.add('loading');
     
     // Assets need loading, show progress
@@ -59,6 +43,9 @@
         progressBar.style.width = percentage + '%';
         
         if (loadedAssets >= totalAssets) {
+            // Mark as loaded for the entire session
+            sessionStorage.setItem('assetsLoaded', 'true');
+            
             // Fade out overlay smoothly
             setTimeout(() => {
                 overlay.style.opacity = '0';
