@@ -82,8 +82,8 @@
             </div>
             <div class="footer-device">
                 <p>
-                    language: {{ client.language[:2] }}<br>
-                    monitor: {{ client.device_type }} {% if client.viewport_width %}(viewport: {{ client.viewport_width }}x{{ client.viewport_height }}){% endif %}<br>
+                    language: {{ client.lang }}<br>
+                    monitor: {{ client.device_type }} {% if client.viewport_width %}({{ client.viewport_width }}x{{ client.viewport_height }}){% endif %}<br>
                     {% if client.dpr %} pixel ratio: {{ client.dpr }}{% endif %}
                 </p>
             </div>
