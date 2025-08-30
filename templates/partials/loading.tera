@@ -19,13 +19,30 @@
         return; // Safety check
     }
     
-    // Check if we should skip the loader (already loaded in this session)
-    const isFirstVisit = !sessionStorage.getItem('assetsLoaded');
+    // Check if this is a reload (using Navigation Timing API)
+    let isReload = false;
+    try {
+        const navEntries = performance.getEntriesByType('navigation');
+        if (navEntries && navEntries.length > 0) {
+            isReload = navEntries[0].type === 'reload';
+        }
+    } catch(e) {
+        // Fallback for older browsers
+    }
     
-    if (!isFirstVisit) {
-        // Assets already loaded in this session, hide immediately
+    // Check if we should skip the loader
+    const isFirstVisit = !sessionStorage.getItem('assetsLoaded');
+    const shouldShowLoader = isFirstVisit || isReload;
+    
+    if (!shouldShowLoader) {
+        // Assets already loaded and not a reload, hide immediately
         overlay.style.display = 'none';
         return;
+    }
+    
+    // Clear the flag on reload so next normal navigation won't show loader
+    if (isReload) {
+        sessionStorage.removeItem('assetsLoaded');
     }
     
     // Track loading of critical assets
