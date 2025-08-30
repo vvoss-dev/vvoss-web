@@ -294,7 +294,7 @@ macro_rules! page_handler {
 }
 
 // Generate all page handlers
-page_handler!(index, "partials/index.tera", "index");
-page_handler!(portfolio, "partials/portfolio.tera", "portfolio");
-page_handler!(knowledge, "partials/knowledge.tera", "knowledge");
-page_handler!(impressum, "partials/impressum.tera", "impressum");
+page_handler!(index, "content/index.tera", "index");
+page_handler!(portfolio, "content/portfolio.tera", "portfolio");
+page_handler!(knowledge, "content/knowledge.tera", "knowledge");
+page_handler!(impressum, "content/impressum.tera", "impressum");
