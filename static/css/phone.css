@@ -95,9 +95,6 @@ footer .container {
 .footer-device p {
     /* Box Model */
     padding: 1rem;
-    
-    /* Visual Design */
-    border-right: none;
 }
 
 /* Typography Scale */

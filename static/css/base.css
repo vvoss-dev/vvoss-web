@@ -402,7 +402,7 @@ footer .container {
     grid-area: device;
     
     /* Typography */
-    text-align: right;
+    text-align: left;
     font-weight: var(--font-weight-light);
     font-size: 0.875rem;
     line-height: 1.5;
@@ -412,9 +412,6 @@ footer .container {
     /* Box Model */
     margin: 0;
     padding: 1rem;
-    
-    /* Visual Design */
-    border-right: 2px solid var(--color-primary);
 }
 
 /* Hide native scrollbar */
