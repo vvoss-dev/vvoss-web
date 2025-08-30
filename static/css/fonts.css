@@ -2,23 +2,19 @@
  * Copyright (c) 2025 Vivian Voss - All rights reserved
  * vvoss.dev - Personal website
  * 
- * Font System - Inter Font Family
+ * Font System - Inter Variable Font
  * 
- * CSS Organization Pattern:
- * 1. Render Control (display, visibility, opacity)
- * 2. Positioning (position, top/right/bottom/left)
- * 3. Box Model (width, height, margin, padding)
- * 4. Typography (font-*, text-*, color)
- * 5. Visual Design (background, border, shadow)
- * 6. Effects (transform, transition, animation)
- * 7. Interaction (cursor, user-select, pointer-events)
+ * Using variable fonts for optimal performance:
+ * - 2 files instead of 18 (Roman + Italic)
+ * - Smooth weight transitions
+ * - ~570KB total vs ~1.8MB for individual files
  */
 
 /* CSS Custom Properties for easy font usage */
 :root {
   --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   
-  /* Font weights as semantic variables */
+  /* Font weights as semantic variables - still work with variable font */
   --font-weight-thin: 100;
   --font-weight-extralight: 200;
   --font-weight-light: 300;
@@ -30,142 +26,25 @@
   --font-weight-black: 900;
 }
 
-/* Thin (100) */
+/* Variable Font - Roman (all upright weights 100-900) */
 @font-face {
   font-family: 'Inter';
   font-style: normal;
-  font-weight: 100;
-  src: url('/static/fonts/Inter_18pt-Thin.woff2') format('woff2');
+  font-weight: 100 900;
+  src: url('/static/fonts/Inter-Roman.var.woff2') format('woff2-variations'),
+       url('/static/fonts/Inter-Roman.var.woff2') format('woff2');
 }
 
+/* Variable Font - Italic (all italic weights 100-900) */
 @font-face {
   font-family: 'Inter';
   font-style: italic;
-  font-weight: 100;
-  src: url('/static/fonts/Inter_18pt-ThinItalic.woff2') format('woff2');
+  font-weight: 100 900;
+  src: url('/static/fonts/Inter-Italic.var.woff2') format('woff2-variations'),
+       url('/static/fonts/Inter-Italic.var.woff2') format('woff2');
 }
 
-/* Extra Light (200) */
-@font-face {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 200;
-  src: url('/static/fonts/Inter_18pt-ExtraLight.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'Inter';
-  font-style: italic;
-  font-weight: 200;
-  src: url('/static/fonts/Inter_18pt-ExtraLightItalic.woff2') format('woff2');
-}
-
-/* Light (300) */
-@font-face {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 300;
-  src: url('/static/fonts/Inter_18pt-Light.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'Inter';
-  font-style: italic;
-  font-weight: 300;
-  src: url('/static/fonts/Inter_18pt-LightItalic.woff2') format('woff2');
-}
-
-/* Regular (400) */
-@font-face {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 400;
-  src: url('/static/fonts/Inter_18pt-Regular.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'Inter';
-  font-style: italic;
-  font-weight: 400;
-  src: url('/static/fonts/Inter_18pt-Italic.woff2') format('woff2');
-}
-
-/* Medium (500) */
-@font-face {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 500;
-  src: url('/static/fonts/Inter_18pt-Medium.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'Inter';
-  font-style: italic;
-  font-weight: 500;
-  src: url('/static/fonts/Inter_18pt-MediumItalic.woff2') format('woff2');
-}
-
-/* Semi Bold (600) */
-@font-face {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 600;
-  src: url('/static/fonts/Inter_18pt-SemiBold.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'Inter';
-  font-style: italic;
-  font-weight: 600;
-  src: url('/static/fonts/Inter_18pt-SemiBoldItalic.woff2') format('woff2');
-}
-
-/* Bold (700) */
-@font-face {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 700;
-  src: url('/static/fonts/Inter_18pt-Bold.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'Inter';
-  font-style: italic;
-  font-weight: 700;
-  src: url('/static/fonts/Inter_18pt-BoldItalic.woff2') format('woff2');
-}
-
-/* Extra Bold (800) */
-@font-face {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 800;
-  src: url('/static/fonts/Inter_18pt-ExtraBold.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'Inter';
-  font-style: italic;
-  font-weight: 800;
-  src: url('/static/fonts/Inter_18pt-ExtraBoldItalic.woff2') format('woff2');
-}
-
-/* Black (900) */
-@font-face {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 900;
-  src: url('/static/fonts/Inter_18pt-Black.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'Inter';
-  font-style: italic;
-  font-weight: 900;
-  src: url('/static/fonts/Inter_18pt-BlackItalic.woff2') format('woff2');
-}
-
-/* Helper classes for direct usage */
+/* Helper classes for direct usage - still work with variable font */
 .font-thin { font-weight: var(--font-weight-thin); }
 .font-extralight { font-weight: var(--font-weight-extralight); }
 .font-light { font-weight: var(--font-weight-light); }
@@ -178,3 +57,4 @@
 
 .font-italic { font-style: italic; }
 .font-normal { font-style: normal; }
+
