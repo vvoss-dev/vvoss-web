@@ -8,11 +8,6 @@
     <meta name="description" content="{{ t['page.description'] }}">
     <title>{{ t['page.title'] }}</title>
     
-    <!-- Preload critical fonts to prevent FOUT -->
-    <link rel="preload" href="/static/fonts/Inter_18pt-Regular.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="/static/fonts/Inter_18pt-Medium.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="/static/fonts/Inter_18pt-Bold.woff2" as="font" type="font/woff2" crossorigin>
-    
     <link rel="stylesheet" href="/static/css/fonts.css">
     <link rel="stylesheet" href="/static/css/base.css">
     <link rel="stylesheet" href="/static/css/{{ client.breakpoint }}.css">
