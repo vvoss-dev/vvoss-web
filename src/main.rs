@@ -11,7 +11,7 @@ mod libs;
 use libs::auth::validator;
 use libs::config::Config;
 use libs::translations::Translations;
-use libs::handlers::{index, portfolio, impressum, static_files};
+use libs::handlers::{index, portfolio, knowledge, impressum, static_files};
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
@@ -58,6 +58,7 @@ async fn main() -> std::io::Result<()> {
             .wrap(auth)
             .route("/", web::get().to(index))
             .route("/portfolio", web::get().to(portfolio))
+            .route("/knowledge", web::get().to(knowledge))
             .route("/impressum", web::get().to(impressum))
             .route("/static/{filename:.*}", web::get().to(static_files))
     })

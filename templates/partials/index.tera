@@ -1,60 +1,54 @@
 {% extends "base.tera" %}
 
 {% block content %}
-<section class="hero">
-    <h1>Welcome to vvoss.dev</h1>
-    <p>Personal website powered by Rust and Tera templates</p>
-    <p class="status">🚀 Successfully deployed via GitHub auto-deployment!</p>
-</section>
+<h1>welcome to vvoss.dev</h1>
+<p>personal website powered by rust and tera templates</p>
+<p class="status">🚀 successfully deployed via github auto-deployment!</p>
 
-<section class="content">
-    <article>
-        <h2>About</h2>
-        <p>This website runs on FreeBSD with a pure Rust backend using Tera templates.</p>
-        <p>No JavaScript frameworks, no PHP - just clean HTML5, CSS3, and Rust.</p>
-    </article>
+<article>
+    <h2>about</h2>
+    <p>this website runs on freebsd with a pure rust backend using tera templates.</p>
+    <p>no javascript frameworks, no php - just clean html5, css3, and rust.</p>
+</article>
+
+<article>
+    <h2>technology stack</h2>
+    <ul>
+        <li>✅ freebsd 14.3 with bastille jails</li>
+        <li>✅ rust with actix-web</li>
+        <li>✅ tera template engine</li>
+        <li>✅ unix socket communication</li>
+        <li>✅ nginx with https (wildcard ssl)</li>
+        <li>✅ pure html5 & css3</li>
+        <li>✅ automatic git deployment</li>
+    </ul>
+</article>
+
+<article>
+    <h2>client detection test</h2>
+    <h3>your device info:</h3>
+    <ul>
+        <li><strong>language:</strong> {{ client.language }}</li>
+        <li><strong>device type:</strong> {{ client.device_type }}</li>
+        <li><strong>css breakpoint:</strong> {{ client.breakpoint }}</li>
+        {% if client.screen_width %}
+        <li><strong>screen:</strong> {{ client.screen_width }}x{{ client.screen_height }}</li>
+        {% endif %}
+        {% if client.viewport_width %}
+        <li><strong>viewport:</strong> {{ client.viewport_width }}x{{ client.viewport_height }}</li>
+        {% endif %}
+        {% if client.dpr %}
+        <li><strong>pixel ratio:</strong> {{ client.dpr }}</li>
+        {% endif %}
+    </ul>
     
-    <article>
-        <h2>Technology Stack</h2>
-        <ul>
-            <li>✅ FreeBSD 14.3 with Bastille Jails</li>
-            <li>✅ Rust with Actix-Web</li>
-            <li>✅ Tera Template Engine</li>
-            <li>✅ Unix Socket Communication</li>
-            <li>✅ nginx with HTTPS (Wildcard SSL)</li>
-            <li>✅ Pure HTML5 & CSS3</li>
-            <li>✅ Automatic Git Deployment</li>
-        </ul>
-    </article>
+    <h3>available translations:</h3>
+    <ul>
+        <li>{{ t["page.title"] }}</li>
+        <li>{{ t["page.description"] }}</li>
+        <li>{{ t["nav.home"] }}</li>
+    </ul>
     
-    <article>
-        <h2>Client Detection Test</h2>
-        <div class="test-box">
-            <h3>Your Device Info:</h3>
-            <ul>
-                <li><strong>Language:</strong> {{ client.language }}</li>
-                <li><strong>Device Type:</strong> {{ client.device_type }}</li>
-                <li><strong>CSS Breakpoint:</strong> {{ client.breakpoint }}</li>
-                {% if client.screen_width %}
-                <li><strong>Screen:</strong> {{ client.screen_width }}x{{ client.screen_height }}</li>
-                {% endif %}
-                {% if client.viewport_width %}
-                <li><strong>Viewport:</strong> {{ client.viewport_width }}x{{ client.viewport_height }}</li>
-                {% endif %}
-                {% if client.dpr %}
-                <li><strong>Pixel Ratio:</strong> {{ client.dpr }}</li>
-                {% endif %}
-            </ul>
-            
-            <h3>Available Translations:</h3>
-            <ul>
-                <li>{{ t["site.title"] }}</li>
-                <li>{{ t["site.description"] }}</li>
-                <li>{{ t["nav.home"] }}</li>
-            </ul>
-            
-            <p><strong>Current Year:</strong> {{ current_year }}</p>
-        </div>
-    </article>
-</section>
+    <p><strong>current year:</strong> {{ current_year }}</p>
+</article>
 {% endblock %}

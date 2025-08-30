@@ -5,15 +5,17 @@ use chrono::Datelike;
 
 use super::client::{detect_client_info, parse_screen_info, is_bot_request, generate_screen_detection_html};
 use super::translations::Translations;
+use super::config::Config;
 
 /// Generic page handler - DRY principle
 pub async fn render_page(
     req: HttpRequest,
     tmpl: web::Data<Tera>,
     translations: web::Data<Translations>,
+    config: web::Data<Config>,
     template_path: &str,
 ) -> Result<HttpResponse> {
-    render_with_client_detection(req, tmpl, translations, template_path).await
+    render_with_client_detection(req, tmpl, translations, config, template_path).await
 }
 
 /// Render page with client detection
@@ -21,6 +23,7 @@ pub async fn render_with_client_detection(
     req: HttpRequest,
     tmpl: web::Data<Tera>,
     translations: web::Data<Translations>,
+    config: web::Data<Config>,
     template_name: &str,
 ) -> Result<HttpResponse> {
     // Skip detection for bots
@@ -30,13 +33,29 @@ pub async fn render_with_client_detection(
             .body(generate_screen_detection_html()));
     }
     
-    let client = detect_client_info(&req);
+    let mut client = detect_client_info(&req);
+    
+    // Add language info to client struct
+    let lang_code = client.language[..2].to_lowercase();
+    client.lang = if config.languages.available.contains(&lang_code) {
+        lang_code
+    } else {
+        config.languages.available.first().unwrap_or(&"en".to_string()).clone()
+    };
+    
+    // Create page info object
+    let page_info = serde_json::json!({
+        "languages": config.languages.available.clone()
+    });
+    
     let mut context = Context::new();
     context.insert("current_year", &chrono::Local::now().year());
     context.insert("client", &client);
+    context.insert("page", &page_info);
     
     // Create a simple translation map for the detected locale
-    let t = translations.strings.get(&client.language)
+    let locale_key = if client.lang == "de" { "de-DE" } else { "en-EN" };
+    let t = translations.strings.get(locale_key)
         .or_else(|| translations.strings.get("en-EN"))
         .cloned()
         .unwrap_or_default();
@@ -85,8 +104,9 @@ macro_rules! page_handler {
             req: HttpRequest,
             tmpl: web::Data<Tera>,
             translations: web::Data<Translations>,
+            config: web::Data<Config>,
         ) -> Result<HttpResponse> {
-            render_page(req, tmpl, translations, $template).await
+            render_page(req, tmpl, translations, config, $template).await
         }
     };
 }
@@ -94,4 +114,5 @@ macro_rules! page_handler {
 // Generate all page handlers
 page_handler!(index, "partials/index.tera");
 page_handler!(portfolio, "partials/portfolio.tera");
+page_handler!(knowledge, "partials/knowledge.tera");
 page_handler!(impressum, "partials/impressum.tera");

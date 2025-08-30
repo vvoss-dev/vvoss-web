@@ -5,6 +5,7 @@ pub struct Config {
     #[allow(dead_code)]
     pub auth: AuthConfig,
     pub server: ServerConfig,
+    pub languages: LanguagesConfig,
 }
 
 #[allow(dead_code)]
@@ -18,6 +19,11 @@ pub struct AuthConfig {
 #[derive(Deserialize, Clone)]
 pub struct ServerConfig {
     pub socket_path: String,
+}
+
+#[derive(Deserialize, Clone)]
+pub struct LanguagesConfig {
+    pub available: Vec<String>,
 }
 
 impl Config {

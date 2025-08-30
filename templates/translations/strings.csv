@@ -1,16 +1,24 @@
 key;text;locale
-site.title;vvoss.dev;de-DE
-site.title;vvoss.dev;en-EN
-site.description;Persönliche Website von V. Voss;de-DE
-site.description;Personal website of V. Voss;en-EN
-site.author;V. Voss;de-DE
-site.author;V. Voss;en-EN
-site.copyright;Alle Rechte vorbehalten;de-DE
-site.copyright;All rights reserved;en-EN
+page.title;vvoss.dev;de-DE
+page.title;vvoss.dev;en-EN
+page.home;Zurück zur Startseite;de-DE
+page.home;Back to home;en-EN
+page.description;Persönliche Website von V. Voss;de-DE
+page.description;Personal website of V. Voss;en-EN
+page.author;V. Voss;de-DE
+page.author;V. Voss;en-EN
+page.copyright;Alle Rechte vorbehalten;de-DE
+page.copyright;All rights reserved;en-EN
+nav.main;Hauptnavigation;de-DE
+nav.main;Main navigation;en-EN
+nav.switch_language;Sprache wechseln;de-DE
+nav.switch_language;Switch language;en-EN
 nav.home;Startseite;de-DE
 nav.home;Home;en-EN
 nav.portfolio;Portfolio;de-DE
 nav.portfolio;Portfolio;en-EN
+nav.knowledge;Wissen;de-DE
+nav.knowledge;Knowledge;en-EN
 nav.impressum;Impressum;de-DE
 nav.impressum;Imprint;en-EN
 nav.contact;Kontakt;de-DE
@@ -31,3 +39,7 @@ impressum.technical;Technische Informationen;de-DE
 impressum.technical;Technical Information;en-EN
 impressum.copyright;Copyright;de-DE
 impressum.copyright;Copyright;en-EN
+knowledge.title;Wissen;de-DE
+knowledge.title;Knowledge;en-EN
+knowledge.subtitle;Gedanken, Notizen und Erkenntnisse;de-DE
+knowledge.subtitle;Thoughts, notes and insights;en-EN

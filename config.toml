@@ -19,3 +19,6 @@ cache_max_age = 3600
 
 [logging]
 level = "info"
+
+[languages]
+available = ["de", "en"]

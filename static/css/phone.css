@@ -14,10 +14,23 @@
  * 7. Interaction (cursor, user-select, pointer-events)
  */
 
+/* Header - Stack on phone */
+header {
+    /* Positioning */
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+/* Logo - Smaller on phone */
+.logo {
+    /* Typography */
+    font-size: 3rem;
+}
+
 /* Layout Overrides for Phone */
 main {
     /* Box Model */
-    padding: 1rem 1rem 1rem 1rem;
+    padding: 1rem;
 }
 
 /* Navigation - Stack vertically on phone */
@@ -25,18 +38,6 @@ nav {
     /* Positioning */
     flex-direction: column;
     align-items: flex-start;
-    
-    /* Box Model */
-    padding: 1rem 1rem 1rem 1rem;
-}
-
-nav ul {
-    /* Positioning */
-    flex-direction: column;
-    
-    /* Box Model */
-    margin-top: 1rem;
-    width: 100%;
     gap: 0.5rem;
 }
 

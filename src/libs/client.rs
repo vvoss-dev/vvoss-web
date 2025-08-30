@@ -12,6 +12,7 @@ pub struct ClientInfo {
     pub dpr: Option<f32>,
     pub device_type: String,
     pub breakpoint: String,
+    pub lang: String,
 }
 
 #[derive(Deserialize)]
@@ -75,6 +76,7 @@ pub fn detect_client_info(req: &HttpRequest) -> ClientInfo {
         dpr: screen_info.as_ref().map(|s| s.dpr),
         device_type: detect_device_type(req, &screen_info),
         breakpoint: detect_breakpoint(req, &screen_info),
+        lang: String::new(), // Will be set in handler
     }
 }
 

@@ -1,15 +1,14 @@
 <!DOCTYPE html>
-<html lang="{% if client.language == 'de-DE' %}de{% else %}en{% endif %}">
+
+
+<html lang="{{ client.lang }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="{{ t['site.description'] }}">
-    <title>{{ t['site.title'] }}</title>
+    <meta name="description" content="{{ t['page.description'] }}">
+    <title>{{ t['page.title'] }}</title>
     
-    <!-- Fonts -->
     <link rel="stylesheet" href="/static/css/fonts.css">
-    
-    <!-- Pure CSS3, load only needed breakpoint -->
     <link rel="stylesheet" href="/static/css/base.css">
     {% if client.breakpoint == "phone" %}
     <link rel="stylesheet" href="/static/css/phone.css">
@@ -24,14 +23,18 @@
     {% block head %}{% endblock %}
 </head>
 <body>
-    <header>
-        <nav>
-            <a href="/" class="logo">Vivian Voss</a>
-            <ul>
-                <li><a href="/">{{ t["nav.home"] }}</a></li>
-                <li><a href="/portfolio">{{ t["nav.portfolio"] }}</a></li>
-                <li><a href="/impressum">{{ t["nav.impressum"] }}</a></li>
-            </ul>
+    <header role="banner">
+        <a href="/" class="logo" aria-label="{{ t['page.home'] }}">vivian voss</a>
+        <nav role="navigation" aria-label="{{ t['nav.main'] }}">
+            <a href="/" {% if current_page == 'index' %}aria-current="page"{% endif %}>{{ t["nav.home"] }}</a>
+            <a href="/portfolio" {% if current_page == 'portfolio' %}aria-current="page"{% endif %}>{{ t["nav.portfolio"] }}</a>
+            <a href="/knowledge" {% if current_page == 'knowledge' %}aria-current="page"{% endif %}>{{ t["nav.knowledge"] }}</a>
+            <a href="/impressum" {% if current_page == 'impressum' %}aria-current="page"{% endif %}>{{ t["nav.impressum"] }}</a>
+            {% for l in page.languages %}
+                {% if l != client.lang %}
+                    <a href="?lang={{ l }}" class="lang-switch" aria-label="{{ t['nav.switch_language'] }}" lang="{{ l }}">{{ l }}</a>
+                {% endif %}
+            {% endfor %}
         </nav>
     </header>
     
@@ -40,7 +43,7 @@
     </main>
     
     <footer>
-        <p>&copy; {{ current_year }} vvoss.dev - {{ t["site.copyright"] }}</p>
+        <p>&copy; {{ current_year }} vvoss.dev - {{ t["page.copyright"] }}</p>
     </footer>
     
     {% block scripts %}{% endblock %}
