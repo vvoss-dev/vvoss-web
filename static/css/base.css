@@ -322,6 +322,54 @@ footer .container {
     font-weight: var(--font-weight-light);
 }
 
+/* Hide native scrollbar */
+html {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+}
+
+html::-webkit-scrollbar {
+    display: none; /* Chrome/Safari/Opera */
+}
+
+/* Custom scrollbar overlay */
+.scrollbar-track {
+    /* Positioning */
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9998;
+    
+    /* Box Model */
+    width: 3px;
+    
+    /* Interaction */
+    pointer-events: none;
+}
+
+.scrollbar-thumb {
+    /* Positioning */
+    position: absolute;
+    right: 0;
+    
+    /* Box Model */
+    width: 3px;
+    
+    /* Visual Design */
+    background: var(--color-tertiary);
+    border-radius: 1.5px;
+    
+    /* Effects */
+    opacity: 0;
+    transition: opacity 200ms ease;
+}
+
+.scrollbar-thumb.visible {
+    /* Render Control */
+    opacity: 1;
+}
+
 /* Loading Overlay - Hidden by default */
 #loading-overlay {
     /* Render Control */

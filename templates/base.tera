@@ -16,6 +16,7 @@
 </head>
 <body>
     {% include "partials/loading.tera" %}
+    {% include "partials/scrollbar.tera" %}
     
     <header role="banner">
         <div class="container">

@@ -1,0 +1,61 @@
+<!-- Custom scrollbar -->
+<div class="scrollbar-track">
+    <div class="scrollbar-thumb" id="scrollbar-thumb"></div>
+</div>
+
+<script>
+(function() {
+    const thumb = document.getElementById('scrollbar-thumb');
+    if (!thumb) return;
+    
+    let fadeTimeout;
+    let isScrolling = false;
+    
+    // Calculate and update scrollbar position
+    function updateScrollbar() {
+        const scrollHeight = document.documentElement.scrollHeight;
+        const clientHeight = document.documentElement.clientHeight;
+        const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        
+        // Only show if content is scrollable
+        if (scrollHeight <= clientHeight) {
+            thumb.classList.remove('visible');
+            return;
+        }
+        
+        // Calculate thumb height based on viewport ratio
+        const thumbHeight = Math.max(30, (clientHeight / scrollHeight) * clientHeight);
+        thumb.style.height = thumbHeight + 'px';
+        
+        // Calculate thumb position
+        const maxScrollTop = scrollHeight - clientHeight;
+        const thumbMaxTop = clientHeight - thumbHeight;
+        const thumbTop = (scrollTop / maxScrollTop) * thumbMaxTop;
+        thumb.style.top = thumbTop + 'px';
+        
+        // Show scrollbar
+        if (!isScrolling) {
+            isScrolling = true;
+            thumb.classList.add('visible');
+        }
+        
+        // Clear existing timeout
+        clearTimeout(fadeTimeout);
+        
+        // Hide after 3 seconds of no scrolling
+        fadeTimeout = setTimeout(() => {
+            thumb.classList.remove('visible');
+            isScrolling = false;
+        }, 3000);
+    }
+    
+    // Update on scroll
+    window.addEventListener('scroll', updateScrollbar, { passive: true });
+    
+    // Update on resize
+    window.addEventListener('resize', updateScrollbar, { passive: true });
+    
+    // Initial update
+    updateScrollbar();
+})();
+</script>
