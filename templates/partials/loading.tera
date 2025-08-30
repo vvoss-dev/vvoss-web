@@ -35,6 +35,9 @@
     const assetsToLoad = [];
     let loadedAssets = 0;
     
+    // Get all stylesheets
+    const stylesheets = document.querySelectorAll('link[rel="stylesheet"]');
+    
     // Add stylesheets to track
     stylesheets.forEach(sheet => {
         assetsToLoad.push(sheet.href);
@@ -96,6 +99,7 @@
     // Safety timeout - hide after 2 seconds no matter what
     setTimeout(() => {
         if (overlay && overlay.style.opacity !== '0') {
+            sessionStorage.setItem('assetsLoaded', 'true');
             overlay.style.opacity = '0';
             setTimeout(() => {
                 overlay.style.display = 'none';
