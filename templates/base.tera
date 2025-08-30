@@ -48,18 +48,35 @@
     <footer>
         <div class="container">
             <div class="footer-tech">
-                <img src="/static/img/logo_freebsd.svg" alt="FreeBSD" />
-                <img src="/static/img/logo_nginx.svg" alt="Nginx" />
-                <img src="/static/img/logo_rust.svg" alt="Rust" />
-                <img src="/static/img/logo_html5.svg" alt="HTML5" />
-                <img src="/static/img/logo_css3.svg" alt="CSS3" />
-                <img src="/static/img/logo_javascript.svg" alt="JavaScript" />
+                <div class="tech-item">
+                    <img src="/static/img/logo_freebsd.svg" alt="FreeBSD" />
+                    <span>FreeBSD 14.3</span>
+                </div>
+                <div class="tech-item">
+                    <img src="/static/img/logo_nginx.svg" alt="Nginx" />
+                    <span>Nginx 1.24</span>
+                </div>
+                <div class="tech-item">
+                    <img src="/static/img/logo_rust.svg" alt="Rust" />
+                    <span>Rust 1.80</span>
+                </div>
+                <div class="tech-item">
+                    <img src="/static/img/logo_html5.svg" alt="HTML5" />
+                    <span>HTML 5</span>
+                </div>
+                <div class="tech-item">
+                    <img src="/static/img/logo_css3.svg" alt="CSS3" />
+                    <span>CSS 3</span>
+                </div>
+                <div class="tech-item">
+                    <img src="/static/img/logo_javascript.svg" alt="JavaScript" />
+                    <span>ES6+</span>
+                </div>
             </div>
             <div class="footer-copyright">
                 <p>
+                    &copy; {{ current_year }} vivian burkhard voss &mndash; {{ t["page.copyright"] }}<br>
                     {{ t["page.latest_update"] }}: {{ page.latest_update }}
-                    &copy; {{ current_year }} vivian burkhard voss<br>
-                    {{ t["page.copyright"] }}<br>
                 </p>
             </div>
         </div>

@@ -21,12 +21,6 @@
     margin: 1.5rem auto;
 }
 
-/* Header container line-height for screen */
-header .container {
-    /* Typography */
-    line-height: 6rem;
-}
-
 /* Footer - Ensure correct order for screen */
 footer .container {
     /* Positioning */

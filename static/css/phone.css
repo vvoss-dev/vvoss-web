@@ -58,10 +58,17 @@ footer .container {
     gap: 1.5rem;
 }
 
-/* Footer tech logos - Center on mobile */
+/* Footer tech logos - 2 columns on mobile */
 .footer-tech {
     /* Positioning */
-    justify-content: center;
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+}
+
+/* Tech item - Stack on very small screens */
+.tech-item {
+    /* Typography */
+    font-size: 0.7rem;
 }
 
 /* Footer copyright - Center text on mobile */

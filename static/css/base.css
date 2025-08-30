@@ -327,33 +327,52 @@ footer .container {
     width: 100%;
 }
 
-/* Footer tech logos */
+/* Footer tech logos grid */
 .footer-tech {
     /* Render Control */
     display: grid;
     
     /* Positioning */
     grid-area: tech;
-    grid-template-columns: repeat(auto-fit, minmax(2rem, 1fr));
-    gap: 1rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
     align-items: center;
-    justify-items: center;
 }
 
-.footer-tech img {
+/* Individual tech item */
+.tech-item {
+    /* Render Control */
+    display: grid;
+    
+    /* Positioning */
+    grid-template-columns: 2rem 1fr;
+    gap: 0.5rem;
+    align-items: center;
+    
+    /* Typography */
+    font-size: 0.75rem;
+    font-weight: var(--font-weight-light);
+}
+
+.tech-item img {
     /* Box Model */
-    width: 100%;
-    max-width: 3rem;
-    height: auto;
+    width: 2rem;
+    height: 2rem;
     
     /* Effects */
     opacity: 0.6;
     transition: opacity 200ms ease;
 }
 
-.footer-tech img:hover {
+.tech-item:hover img {
     /* Effects */
     opacity: 1;
+}
+
+.tech-item span {
+    /* Typography */
+    color: var(--color-text-light);
+    white-space: nowrap;
 }
 
 /* Footer copyright */
