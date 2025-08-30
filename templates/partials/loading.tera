@@ -10,9 +10,14 @@
     const isForceReload = performance.getEntriesByType('navigation')[0]?.type === 'reload' && 
                           !document.referrer;
     
+    // Clear the flag on force reload
+    if (isForceReload) {
+        sessionStorage.setItem('assetsLoaded', 'false');
+    }
+    
     // Check if we already loaded once in this session
-    if (!isForceReload && sessionStorage.getItem('assetsLoaded') === 'true') {
-        // Already loaded in this session and not a force reload, skip loader
+    if (sessionStorage.getItem('assetsLoaded') === 'true') {
+        // Already loaded in this session, skip loader completely
         return;
     }
     
