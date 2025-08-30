@@ -14,49 +14,20 @@
  * 7. Interaction (cursor, user-select, pointer-events)
  */
 
-/* Layout Container - Asymmetric Bauhaus Layout */
-main {
-    /* Render Control */
-    display: grid;
-    
-    /* Positioning */
-    grid-template-columns: 1fr 2fr 1fr;
-    
+/* Container overrides for wide screens */
+.header-content,
+.main-content,
+.footer-content {
     /* Box Model */
-    max-width: 1440px;
-    margin: 0 auto 0 auto;
-    padding: 4rem 0 4rem 0;
+    max-width: 1260px;
+    margin: 0 auto;
+    padding: 2rem 3rem;
 }
 
-main > * {
-    /* Positioning */
-    grid-column: 2;
-    
-    /* Box Model */
-    padding: 0 4rem 0 4rem;
-}
-
-/* Navigation - Wide spacing */
+/* Navigation spacing for wide */
 nav {
-    /* Render Control */
-    display: flex;
-    
-    /* Positioning */
-    justify-content: space-between;
-    align-items: center;
-    
     /* Box Model */
-    max-width: 1440px;
-    margin: 0 auto 0 auto;
-    padding: 2rem 4rem 2rem 4rem;
-}
-
-nav ul {
-    /* Render Control */
-    display: flex;
-    
-    /* Box Model */
-    gap: 3rem;
+    gap: 2rem;
 }
 
 /* Typography Scale - Extreme for art direction */

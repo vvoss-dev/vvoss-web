@@ -20,27 +20,8 @@
 .footer-content {
     /* Box Model */
     max-width: 768px;
-}
-
-/* Navigation */
-nav {
-    /* Render Control */
-    display: flex;
-    
-    /* Positioning */
-    justify-content: space-between;
-    align-items: center;
-    
-    /* Box Model */
-    padding: 1.5rem 2rem 1.5rem 2rem;
-}
-
-nav ul {
-    /* Render Control */
-    display: flex;
-    
-    /* Box Model */
-    gap: 1.5rem;
+    margin: 0 auto;
+    padding: 1.5rem;
 }
 
 /* Typography Scale */

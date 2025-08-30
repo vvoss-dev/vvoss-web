@@ -159,21 +159,6 @@ em, i {
     font-style: italic;
 }
 
-/* Content container - Centers content with max-width */
-.container {
-    /* Render Control */
-    display: grid;
-    
-    /* Positioning */
-    grid-template-columns: 1fr;
-    justify-content: center;
-    
-    /* Box Model */
-    width: 100%;
-    max-width: 1260px;
-    margin: 0 auto;
-    padding: 0 2rem;
-}
 
 /* Header wrapper */
 header {
@@ -199,8 +184,7 @@ header {
     
     /* Box Model */
     width: 100%;
-    max-width: 1260px;
-    padding: 1rem 2rem;
+    padding: 1rem;
 }
 
 /* Logo */
@@ -311,8 +295,7 @@ main {
     
     /* Box Model */
     width: 100%;
-    max-width: 1260px;
-    padding: 2rem;
+    padding: 1rem;
 }
 
 /* Footer wrapper */
@@ -332,8 +315,7 @@ footer {
 .footer-content {
     /* Box Model */
     width: 100%;
-    max-width: 1260px;
-    padding: 2rem;
+    padding: 1rem;
     
     /* Typography */
     text-align: center;

@@ -14,12 +14,11 @@
  * 7. Interaction (cursor, user-select, pointer-events)
  */
 
-/* Container overrides for phone */
+/* Container overrides for phone - no max-width, full width */
 .header-content,
 .main-content,
 .footer-content {
     /* Box Model */
-    max-width: 100%;
     padding: 1rem;
 }
 

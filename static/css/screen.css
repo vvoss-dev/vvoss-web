@@ -20,14 +20,8 @@
 .footer-content {
     /* Box Model */
     max-width: 1024px;
-}
-
-nav ul {
-    /* Render Control */
-    display: flex;
-    
-    /* Box Model */
-    gap: 2rem;
+    margin: 0 auto;
+    padding: 1.5rem 2rem;
 }
 
 /* Typography Scale */
