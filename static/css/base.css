@@ -357,7 +357,7 @@ html::-webkit-scrollbar {
     width: 0.3125rem;  /* 5px */
     
     /* Visual Design */
-    background: var(--color-tertiary);
+    background: var(--color-dark);
     border-radius: 0.15625rem;  /* 2.5px */
     
     /* Effects */
