@@ -322,7 +322,7 @@ footer .container {
     
     /* Positioning */
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-areas: "copyright device tech";
+    grid-template-areas: "tech copyright device";
     gap: 2rem;
     align-items: center;
     
@@ -395,7 +395,7 @@ footer .container {
     padding: 1rem 3rem 1rem 1rem;
     
     /* Visual Design */
-    border-right: 2px solid var(--color-primary);
+    border-right: 2px solid var(--color-gray);
 }
 
 /* Footer device info */

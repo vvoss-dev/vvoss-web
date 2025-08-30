@@ -25,7 +25,7 @@
 footer .container {
     /* Positioning */
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-areas: "copyright device tech";
+    grid-template-areas: "tech copyright device";
 }
 
 /* Navigation spacing for wide */
