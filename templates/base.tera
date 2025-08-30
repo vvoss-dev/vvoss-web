@@ -26,7 +26,7 @@
 <body>
     <header>
         <nav>
-            <a href="/" class="logo">vvoss.dev</a>
+            <a href="/" class="logo">Vivian Voss</a>
             <ul>
                 <li><a href="/">{{ t["nav.home"] }}</a></li>
                 <li><a href="/portfolio">{{ t["nav.portfolio"] }}</a></li>

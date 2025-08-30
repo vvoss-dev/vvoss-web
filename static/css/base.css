@@ -50,121 +50,170 @@
 
 /* Reset and defaults */
 * {
+    /* Box Model */
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Use Inter font family globally */
+/* Root typography and smoothing */
 html {
+    /* Typography */
     font-family: var(--font-family);
-    font-weight: var(--font-weight-regular);
     font-size: 16px;
+    font-weight: var(--font-weight-regular);
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
 
+/* Body container */
 body {
+    /* Box Model */
     min-height: 100vh;
+    
+    /* Typography */
     color: var(--color-text);
+    
+    /* Visual Design */
     background: var(--color-bg);
 }
 
-/* Typography defaults with Inter weights */
+/* Typography hierarchy */
 h1, h2, h3, h4, h5, h6 {
+    /* Box Model */
+    margin-bottom: 1rem;
+    
+    /* Typography */
     font-weight: var(--font-weight-bold);
     line-height: 1.2;
-    margin-bottom: 1rem;
 }
 
 h1 {
+    /* Typography */
     font-size: 2.5rem;
     font-weight: var(--font-weight-black);
 }
 
 h2 {
+    /* Typography */
     font-size: 2rem;
     font-weight: var(--font-weight-extrabold);
 }
 
 h3 {
+    /* Typography */
     font-size: 1.75rem;
     font-weight: var(--font-weight-bold);
 }
 
 h4 {
+    /* Typography */
     font-size: 1.5rem;
     font-weight: var(--font-weight-semibold);
 }
 
 h5 {
+    /* Typography */
     font-size: 1.25rem;
     font-weight: var(--font-weight-medium);
 }
 
 h6 {
+    /* Typography */
     font-size: 1rem;
     font-weight: var(--font-weight-medium);
 }
 
+/* Text elements */
 p {
+    /* Box Model */
     margin-bottom: 1rem;
 }
 
 a {
+    /* Typography */
     color: inherit;
     text-decoration: none;
+    
+    /* Effects */
+    transition: text-decoration 200ms ease;
 }
 
 a:hover {
+    /* Typography */
     text-decoration: underline;
 }
 
 strong, b {
+    /* Typography */
     font-weight: var(--font-weight-bold);
 }
 
 em, i {
+    /* Typography */
     font-style: italic;
 }
 
-/* Basic layout structure */
+/* Header structure */
 header {
-    padding: 1rem;
+    /* Box Model */
+    padding: 1rem 1rem 1rem 1rem;
+    
+    /* Visual Design */
     border-bottom: 1px solid var(--color-border);
 }
 
+/* Navigation */
 nav {
+    /* Render Control */
     display: flex;
+    
+    /* Positioning */
     justify-content: space-between;
     align-items: center;
 }
 
 nav .logo {
-    font-size: 1.5rem;
+    /* Typography */
+    font-size: 3rem;
     font-weight: var(--font-weight-bold);
+    letter-spacing: -0.05em;
     text-decoration: none;
 }
 
 nav ul {
-    list-style: none;
+    /* Render Control */
     display: flex;
+    
+    /* Box Model */
     gap: 2rem;
+    
+    /* Typography */
+    list-style: none;
 }
 
 nav a {
+    /* Typography */
     font-weight: var(--font-weight-medium);
 }
 
+/* Main content area */
 main {
-    padding: 2rem;
+    /* Box Model */
     min-height: calc(100vh - 200px);
+    padding: 2rem 2rem 2rem 2rem;
 }
 
+/* Footer */
 footer {
-    padding: 2rem;
-    border-top: 1px solid var(--color-border);
+    /* Box Model */
+    padding: 2rem 2rem 2rem 2rem;
+    
+    /* Typography */
     text-align: center;
     font-weight: var(--font-weight-light);
+    
+    /* Visual Design */
+    border-top: 1px solid var(--color-border);
 }
