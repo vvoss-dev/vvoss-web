@@ -309,7 +309,7 @@ footer {
     justify-items: center;
     
     /* Typography */
-    color: var(--color-border);
+    color: var(--color-gray);
     
     /* Visual Design */
     border-top: 1px solid var(--color-border);
@@ -392,7 +392,7 @@ footer .container {
 .footer-copyright p {
     /* Box Model */
     margin: 0;
-    padding: 1rem;
+    padding: 1rem 3rem 1rem 1rem;
     
     /* Visual Design */
     border-right: 2px solid var(--color-primary);
