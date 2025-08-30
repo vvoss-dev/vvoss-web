@@ -21,7 +21,7 @@
 }
 
 /* Header - Stack on phone */
-header.container {
+header .container {
     /* Positioning */
     grid-template-columns: 1fr;
     gap: 1rem;

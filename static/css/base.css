@@ -173,8 +173,8 @@ header {
     border-bottom: 1px solid var(--color-border);
 }
 
-/* Header content */
-header.container {
+/* Header content container */
+header .container {
     /* Render Control */
     display: grid;
     
@@ -284,8 +284,8 @@ main {
     justify-items: center;
 }
 
-/* Main content */
-main.container {
+/* Main content container */
+main .container {
     /* Render Control */
     display: grid;
     
@@ -311,8 +311,8 @@ footer {
     border-top: 1px solid var(--color-border);
 }
 
-/* Footer content */
-footer.container {
+/* Footer content container */
+footer .container {
     /* Box Model */
     width: 100%;
     padding: 1rem;
