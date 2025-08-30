@@ -337,12 +337,12 @@ html::-webkit-scrollbar {
     /* Positioning */
     position: fixed;
     top: 0;
-    right: 3px;
+    right: 0.1875rem;  /* 3px */
     bottom: 0;
     z-index: 9998;
     
     /* Box Model */
-    width: 5px;
+    width: 0.3125rem;  /* 5px */
     
     /* Interaction */
     pointer-events: none;
@@ -354,11 +354,11 @@ html::-webkit-scrollbar {
     right: 0;
     
     /* Box Model */
-    width: 5px;
+    width: 0.3125rem;  /* 5px */
     
     /* Visual Design */
     background: var(--color-tertiary);
-    border-radius: 2.5px;
+    border-radius: 0.15625rem;  /* 2.5px */
     
     /* Effects */
     opacity: 0;
@@ -406,7 +406,7 @@ html::-webkit-scrollbar {
     
     /* Box Model */
     width: 0%;
-    height: 3px;
+    height: 0.1875rem;  /* 3px */
     
     /* Visual Design */
     background: var(--color-tertiary);
