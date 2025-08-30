@@ -308,6 +308,9 @@ footer {
     grid-template-columns: 1fr;
     justify-items: center;
     
+    /* Typography */
+    color: var(--color-border);
+    
     /* Visual Design */
     border-top: 1px solid var(--color-border);
 }
@@ -371,7 +374,6 @@ footer .container {
 
 .tech-item span {
     /* Typography */
-    color: var(--color-text-light);
     white-space: nowrap;
 }
 
