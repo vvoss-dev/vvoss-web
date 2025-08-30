@@ -141,12 +141,12 @@ a {
     text-decoration: none;
     
     /* Effects */
-    transition: text-decoration 200ms ease;
+    transition: color 200ms ease;
 }
 
 a:hover {
     /* Typography */
-    text-decoration: underline;
+    text-decoration: none;
 }
 
 strong, b {
