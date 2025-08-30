@@ -179,7 +179,7 @@ header .container {
     display: grid;
     
     /* Positioning */
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: max-content 1fr;
     align-items: center;
     
     /* Box Model */
