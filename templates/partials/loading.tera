@@ -6,6 +6,16 @@
 <!-- Asset loading script -->
 <script>
 (function() {
+    // Check if this is a navigation from user interaction
+    // If user clicked a link or used keyboard, don't show loader
+    const navigationType = performance.getEntriesByType('navigation')[0];
+    const isUserNavigation = document.referrer && document.referrer.includes(window.location.hostname);
+    
+    if (isUserNavigation) {
+        // User navigated from within the site, assets are cached
+        return;
+    }
+    
     const overlay = document.getElementById('loading-overlay');
     const progressBar = document.getElementById('loading-progress');
     
@@ -31,7 +41,7 @@
     
     // Only show loader if assets actually need loading
     if (!needsLoading) {
-        // Everything cached, don't show loader at all
+        // Everything cached, don't show loader
         return;
     }
     
