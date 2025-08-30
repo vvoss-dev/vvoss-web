@@ -11,6 +11,22 @@
 <!-- Asset loading script -->
 <script>
 (function() {
+    // Check if this is first visit or force reload
+    const isReload = performance.navigation && performance.navigation.type === 1;
+    const isFirstVisit = !sessionStorage.getItem('assetsLoaded');
+    const shouldShowLoader = isFirstVisit || isReload;
+    
+    const overlay = document.getElementById('loading-overlay');
+    
+    // If assets are already cached, hide overlay immediately
+    if (!shouldShowLoader) {
+        if (overlay) {
+            overlay.style.display = 'none';
+            overlay.remove();
+        }
+        return; // Exit early, no need to track loading
+    }
+    
     // Track loading of critical assets
     const assetsToLoad = [];
     let loadedAssets = 0;
@@ -43,6 +59,9 @@
         }
         
         if (loadedAssets >= totalAssets) {
+            // Mark assets as loaded in sessionStorage
+            sessionStorage.setItem('assetsLoaded', 'true');
+            
             // All assets loaded, hide overlay
             setTimeout(() => {
                 if (overlay) {
@@ -83,6 +102,7 @@
     // Fallback: hide overlay after 3 seconds regardless
     setTimeout(() => {
         if (overlay && !overlay.classList.contains('loaded')) {
+            sessionStorage.setItem('assetsLoaded', 'true'); // Mark as loaded even on timeout
             overlay.classList.add('loaded');
             setTimeout(() => overlay.remove(), 300);
         }
