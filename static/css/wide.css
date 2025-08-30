@@ -21,6 +21,12 @@
     margin: 0 auto;
 }
 
+/* Header container line-height for wide */
+header .container {
+    /* Typography */
+    line-height: 10rem;
+}
+
 /* Navigation spacing for wide */
 nav {
     /* Box Model */

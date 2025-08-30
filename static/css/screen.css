@@ -21,6 +21,12 @@
     margin: 0 auto;
 }
 
+/* Header container line-height for screen */
+header .container {
+    /* Typography */
+    line-height: 6rem;
+}
+
 /* Typography Scale */
 h1 {
     /* Typography */

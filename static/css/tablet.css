@@ -21,6 +21,12 @@
     margin: 0 auto;
 }
 
+/* Header container line-height for tablet */
+header .container {
+    /* Typography */
+    line-height: 4rem;
+}
+
 /* Typography Scale */
 h1 {
     /* Typography */

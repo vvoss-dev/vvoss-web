@@ -206,6 +206,9 @@ nav {
     
     /* Box Model */
     gap: 1rem;
+    
+    /* Typography */
+    line-height: 3rem;
 }
 
 nav a {
