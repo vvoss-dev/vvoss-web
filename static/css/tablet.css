@@ -21,6 +21,12 @@
     margin: 1rem auto;
 }
 
+/* Header container - Tablet specific line-height */
+header .container {
+    /* Typography */
+    line-height: 1.4;  /* Balanced line-height for tablet */
+}
+
 /* Footer - Ensure correct order for tablet */
 footer .container {
     /* Positioning */

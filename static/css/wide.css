@@ -21,6 +21,12 @@
     margin: 2rem auto;
 }
 
+/* Header container - Wide specific line-height */
+header .container {
+    /* Typography */
+    line-height: 1.6;  /* Spacious line-height for wide screens */
+}
+
 /* Footer - Ensure correct order for wide */
 footer .container {
     /* Positioning */

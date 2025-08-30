@@ -184,6 +184,9 @@ header .container {
     
     /* Box Model */
     width: 100%;
+    
+    /* Typography */
+    line-height: 1.5;  /* Base line-height for header container */
 }
 
 /* Logo */
@@ -206,7 +209,7 @@ header .container {
 
 .logo-profession {
     /* Typography */
-    font-size: 1.45rem;
+    font-size: 0.95rem;
     font-weight: var(--font-weight-light);
     letter-spacing: 0.24em;
     text-transform: uppercase;

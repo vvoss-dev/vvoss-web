@@ -26,6 +26,9 @@ header .container {
     /* Positioning */
     grid-template-columns: 1fr;
     gap: 1rem;
+    
+    /* Typography */
+    line-height: 1.3;  /* Tighter line-height for phone */
 }
 
 /* Logo - Smaller on phone */
