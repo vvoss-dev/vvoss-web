@@ -77,6 +77,14 @@ footer .container {
     text-align: center;
 }
 
+.footer-copyright p {
+    /* Box Model */
+    padding-right: 0;
+    
+    /* Visual Design */
+    border-right: none;
+}
+
 /* Typography Scale */
 h1 {
     /* Typography */

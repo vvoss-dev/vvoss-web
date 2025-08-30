@@ -24,7 +24,7 @@
 /* Footer - Ensure correct order for wide */
 footer .container {
     /* Positioning */
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 1fr 1fr;
     grid-template-areas: "copyright tech";
 }
 

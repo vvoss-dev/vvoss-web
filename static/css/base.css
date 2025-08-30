@@ -318,7 +318,7 @@ footer .container {
     display: grid;
     
     /* Positioning */
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 1fr 1fr;
     grid-template-areas: "copyright tech";
     gap: 2rem;
     align-items: center;
@@ -381,7 +381,7 @@ footer .container {
     grid-area: copyright;
     
     /* Typography */
-    text-align: left;
+    text-align: right;
     font-weight: var(--font-weight-light);
     font-size: 0.875rem;
     line-height: 1.5;
@@ -390,6 +390,10 @@ footer .container {
 .footer-copyright p {
     /* Box Model */
     margin: 0;
+    padding-right: 1rem;
+    
+    /* Visual Design */
+    border-right: 2px solid var(--color-primary);
 }
 
 /* Hide native scrollbar */

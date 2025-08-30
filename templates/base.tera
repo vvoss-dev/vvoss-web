@@ -75,7 +75,7 @@
             </div>
             <div class="footer-copyright">
                 <p>
-                    &copy; {{ current_year }} vivian burkhard voss &mndash; {{ t["page.copyright"] }}<br>
+                    &copy; {{ current_year }} vivian burkhard voss &mdash; {{ t["page.copyright"] }}<br>
                     {{ t["page.latest_update"] }}: {{ page.latest_update }}
                 </p>
             </div>
