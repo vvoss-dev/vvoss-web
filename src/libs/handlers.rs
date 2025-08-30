@@ -37,12 +37,50 @@ pub async fn render_with_client_detection(
     
     let mut client = detect_client_info(&req);
     
-    // Add language info to client struct
-    let lang_code = client.language[..2].to_lowercase();
-    client.lang = if config.languages.available.contains(&lang_code) {
-        lang_code
+    // Check for language cookie first
+    let mut cookie_lang = None;
+    if let Some(cookie_header) = req.headers().get("cookie") {
+        if let Ok(cookies_str) = cookie_header.to_str() {
+            for cookie in cookies_str.split(';') {
+                let trimmed = cookie.trim();
+                if let Some(value) = trimmed.strip_prefix("lang=") {
+                    let lang = value.to_lowercase();
+                    if config.languages.available.contains(&lang) {
+                        cookie_lang = Some(lang);
+                        break;
+                    }
+                }
+            }
+        }
+    }
+    
+    // Check for language override in query parameters (overrides cookie)
+    let query_string = req.query_string();
+    let mut selected_lang = None;
+    
+    // Parse query parameters manually
+    for param in query_string.split('&') {
+        if let Some(value) = param.strip_prefix("lang=") {
+            let lang = value.to_lowercase();
+            if config.languages.available.contains(&lang) {
+                selected_lang = Some(lang);
+                break;
+            }
+        }
+    }
+    
+    // Priority: 1. Query param, 2. Cookie, 3. Browser detection
+    client.lang = if let Some(lang) = selected_lang.clone() {
+        lang
+    } else if let Some(lang) = cookie_lang {
+        lang
     } else {
-        config.languages.available.first().unwrap_or(&"en".to_string()).clone()
+        let lang_code = client.language[..2].to_lowercase();
+        if config.languages.available.contains(&lang_code) {
+            lang_code
+        } else {
+            config.languages.available.first().unwrap_or(&"en".to_string()).clone()
+        }
     };
     
     // Create page info object
@@ -68,7 +106,21 @@ pub async fn render_with_client_detection(
         .render(template_name, &context)
         .map_err(|e| actix_web::error::ErrorInternalServerError(e))?;
 
-    Ok(HttpResponse::Ok().content_type("text/html").body(rendered))
+    // Build response with optional language cookie
+    let mut response = HttpResponse::Ok();
+    
+    // If language was explicitly selected via query param, set a cookie
+    if selected_lang.is_some() {
+        response.cookie(
+            actix_web::cookie::Cookie::build("lang", client.lang.clone())
+                .path("/")
+                .max_age(actix_web::cookie::time::Duration::days(365))
+                .same_site(actix_web::cookie::SameSite::Lax)
+                .finish()
+        );
+    }
+    
+    Ok(response.content_type("text/html").body(rendered))
 }
 
 /// Serve static files (CSS, JS, images, fonts)
