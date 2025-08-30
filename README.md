@@ -14,7 +14,8 @@ Personal website built with Rust and Tera templates, running on FreeBSD.
 ├── src/                  # Rust application source
 ├── templates/            # Tera templates
 │   ├── base.tera        # Base template
-│   └── partials/        # Page templates
+│   ├── components/      # Reusable UI components
+│   └── content/         # Page content templates
 ├── static/              # Static assets (CSS, JS, images)
 └── .github/             # GitHub Actions workflows
 ```

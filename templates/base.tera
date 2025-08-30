@@ -15,8 +15,8 @@
     {% block head %}{% endblock %}
 </head>
 <body>
-    {% include "partials/loading.tera" %}
-    {% include "partials/scrollbar.tera" %}
+    {% include "components/loading.tera" %}
+    {% include "components/scrollbar.tera" %}
     
     <header role="banner">
         <div class="container">
