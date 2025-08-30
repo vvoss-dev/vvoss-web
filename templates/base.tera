@@ -81,10 +81,14 @@
             </div>
             <div class="footer-device">
                 <p>
-                    language: {{ client.lang }}<br>
-                    device: {{ client.device }}<br>
+                    language: {{ client.language }}<br>
+                    device: {{ client.device_type }}<br>
+                    {% if client.viewport_width %}
                     viewport: {{ client.viewport_width }}x{{ client.viewport_height }}<br>
-                    pixel ratio: {{ client.pixel_ratio }}
+                    {% endif %}
+                    {% if client.dpr %}
+                    pixel ratio: {{ client.dpr }}
+                    {% endif %}
                 </p>
             </div>
         </div>
