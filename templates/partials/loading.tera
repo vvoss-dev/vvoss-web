@@ -11,100 +11,93 @@
 <!-- Asset loading script -->
 <script>
 (function() {
-    // Check if this is first visit or force reload
-    // Use modern Navigation Timing API
-    const navEntries = performance.getEntriesByType('navigation');
-    const isReload = navEntries.length > 0 && navEntries[0].type === 'reload';
-    const isFirstVisit = !sessionStorage.getItem('assetsLoaded');
-    const shouldShowLoader = isFirstVisit || isReload;
-    
+    // Simple approach - always show loader, track actual loading
     const overlay = document.getElementById('loading-overlay');
+    const progressBar = document.getElementById('loading-progress');
     
-    // If assets are already cached, hide overlay immediately
-    if (!shouldShowLoader && overlay) {
+    if (!overlay || !progressBar) {
+        return; // Safety check
+    }
+    
+    // Check if we should skip the loader (already loaded in this session)
+    const isFirstVisit = !sessionStorage.getItem('assetsLoaded');
+    
+    if (!isFirstVisit) {
+        // Assets already loaded in this session, hide immediately
         overlay.style.display = 'none';
-        overlay.remove();
-        return; // Exit early, no need to track loading
+        return;
     }
     
     // Track loading of critical assets
     const assetsToLoad = [];
     let loadedAssets = 0;
     
-    // Get all stylesheets
+    // Add stylesheets to track
     const stylesheets = document.querySelectorAll('link[rel="stylesheet"]');
     stylesheets.forEach(sheet => {
         assetsToLoad.push(sheet.href);
     });
     
-    // Track fonts (Inter Roman and Italic variable fonts)
-    const fontsToCheck = [
-        '/static/fonts/Inter-Roman.var.woff2',
-        '/static/fonts/Inter-Italic.var.woff2'
-    ];
-    
-    fontsToCheck.forEach(fontUrl => {
-        assetsToLoad.push(fontUrl);
-    });
+    // Add fonts to track
+    assetsToLoad.push('/static/fonts/Inter-Roman.var.woff2');
+    assetsToLoad.push('/static/fonts/Inter-Italic.var.woff2');
     
     const totalAssets = assetsToLoad.length;
-    const progressBar = document.getElementById('loading-progress');
-    const overlay = document.getElementById('loading-overlay');
     
     function updateProgress() {
         loadedAssets++;
-        const percentage = (loadedAssets / totalAssets) * 100;
-        if (progressBar) {
-            progressBar.style.width = percentage + '%';
-        }
+        const percentage = Math.min((loadedAssets / totalAssets) * 100, 100);
+        progressBar.style.width = percentage + '%';
         
         if (loadedAssets >= totalAssets) {
-            // Mark assets as loaded in sessionStorage
+            // Mark as loaded for this session
             sessionStorage.setItem('assetsLoaded', 'true');
             
-            // All assets loaded, hide overlay
+            // Hide overlay with animation
             setTimeout(() => {
-                if (overlay) {
-                    overlay.classList.add('loaded');
-                    // Remove from DOM after transition
-                    setTimeout(() => {
-                        overlay.remove();
-                    }, 300);
-                }
-            }, 100); // Small delay for smoother experience
+                overlay.classList.add('loaded');
+                setTimeout(() => {
+                    overlay.style.display = 'none';
+                }, 300);
+            }, 200);
         }
     }
     
-    // Check stylesheets
+    // Track stylesheet loading
     stylesheets.forEach(sheet => {
         if (sheet.sheet) {
             // Already loaded
             updateProgress();
         } else {
+            // Wait for load
             sheet.addEventListener('load', updateProgress);
-            sheet.addEventListener('error', updateProgress); // Count errors too
+            sheet.addEventListener('error', updateProgress);
         }
     });
     
-    // Check fonts with Font Face API
+    // Track font loading
     if (document.fonts && document.fonts.ready) {
         document.fonts.ready.then(() => {
-            // Both variable fonts count as loaded when fonts are ready
-            fontsToCheck.forEach(() => updateProgress());
+            // Both fonts loaded
+            updateProgress();
+            updateProgress();
         });
     } else {
-        // Fallback: just wait a bit for fonts
+        // Fallback - just assume fonts load after a delay
         setTimeout(() => {
-            fontsToCheck.forEach(() => updateProgress());
-        }, 500);
+            updateProgress();
+            updateProgress();
+        }, 1000);
     }
     
-    // Fallback: hide overlay after 3 seconds regardless
+    // Safety timeout - hide after 3 seconds no matter what
     setTimeout(() => {
         if (overlay && !overlay.classList.contains('loaded')) {
-            sessionStorage.setItem('assetsLoaded', 'true'); // Mark as loaded even on timeout
+            sessionStorage.setItem('assetsLoaded', 'true');
             overlay.classList.add('loaded');
-            setTimeout(() => overlay.remove(), 300);
+            setTimeout(() => {
+                overlay.style.display = 'none';
+            }, 300);
         }
     }, 3000);
 })();
