@@ -184,7 +184,6 @@ header .container {
     
     /* Box Model */
     width: 100%;
-    padding: 1rem;
 }
 
 /* Logo */
@@ -295,7 +294,6 @@ main .container {
     
     /* Box Model */
     width: 100%;
-    padding: 1rem;
 }
 
 /* Footer wrapper */
@@ -315,7 +313,6 @@ footer {
 footer .container {
     /* Box Model */
     width: 100%;
-    padding: 1rem;
     
     /* Typography */
     text-align: center;
