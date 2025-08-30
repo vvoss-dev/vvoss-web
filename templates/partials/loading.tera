@@ -6,13 +6,13 @@
 <!-- Asset loading script -->
 <script>
 (function() {
-    // Check if this is a force reload (Ctrl+F5 / Cmd+Shift+R)
-    const isForceReload = performance.getEntriesByType('navigation')[0]?.type === 'reload' && 
-                          !document.referrer;
+    // Check if this is a force reload - navigation.type is 'reload' for any reload
+    const navEntry = performance.getEntriesByType('navigation')[0];
+    const isReload = navEntry && navEntry.type === 'reload';
     
-    // Clear the flag on force reload
-    if (isForceReload) {
-        sessionStorage.setItem('assetsLoaded', 'false');
+    // On any reload (including force reload), reset the flag
+    if (isReload) {
+        sessionStorage.removeItem('assetsLoaded');
     }
     
     // Check if we already loaded once in this session
