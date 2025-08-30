@@ -83,8 +83,8 @@
                 <p>
                     language: {{ client.lang }}<br>
                     device: {{ client.device }}<br>
-                    viewport: {{ client.screen.width }}x{{ client.screen.height }}<br>
-                    pixel ratio: {{ client.screen.pixel_ratio }}
+                    viewport: {{ client.viewport_width }}x{{ client.viewport_height }}<br>
+                    pixel ratio: {{ client.pixel_ratio }}
                 </p>
             </div>
         </div>
