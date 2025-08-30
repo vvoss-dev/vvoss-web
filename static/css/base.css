@@ -322,8 +322,12 @@ footer .container {
     font-weight: var(--font-weight-light);
 }
 
-/* Loading Overlay */
+/* Loading Overlay - Hidden by default */
 #loading-overlay {
+    /* Render Control */
+    display: none;
+    opacity: 1;
+    
     /* Positioning */
     position: fixed;
     top: 0;
@@ -336,13 +340,14 @@ footer .container {
     background: var(--color-bg);
     
     /* Effects */
-    transition: opacity 300ms ease;
+    transition: opacity 300ms ease-out;
+    pointer-events: none;
 }
 
-#loading-overlay.loaded {
-    /* Effects */
-    opacity: 0;
-    pointer-events: none;
+/* Show overlay only when loading class is added */
+#loading-overlay.loading {
+    display: block;
+    opacity: 1;
 }
 
 .loading-progress {

@@ -13,27 +13,30 @@
         return;
     }
     
-    // Check if fonts are already in cache by checking document.fonts
-    let fontsAlreadyCached = false;
-    if (document.fonts && document.fonts.check) {
-        // Check if Inter font is already available
-        fontsAlreadyCached = document.fonts.check('16px Inter');
-    }
-    
-    // Check if stylesheets are already loaded (they load synchronously if cached)
+    // Quick check if we need loading screen at all
     const stylesheets = document.querySelectorAll('link[rel="stylesheet"]');
-    let stylesheetsLoaded = true;
+    let needsLoading = false;
+    
+    // Check if any stylesheet is not loaded yet
     stylesheets.forEach(sheet => {
         if (!sheet.sheet) {
-            stylesheetsLoaded = false;
+            needsLoading = true;
         }
     });
     
-    // If everything is cached, hide loader immediately
-    if (fontsAlreadyCached && stylesheetsLoaded) {
-        overlay.style.display = 'none';
+    // Check fonts - if fonts aren't ready, we need loading
+    if (document.fonts && !document.fonts.check('16px Inter')) {
+        needsLoading = true;
+    }
+    
+    // Only show loader if assets actually need loading
+    if (!needsLoading) {
+        // Everything cached, don't show loader at all
         return;
     }
+    
+    // Assets need loading, show the overlay
+    overlay.classList.add('loading');
     
     // Assets need loading, show progress
     const assetsToLoad = [];
@@ -56,13 +59,14 @@
         progressBar.style.width = percentage + '%';
         
         if (loadedAssets >= totalAssets) {
-            // Hide overlay with animation
+            // Fade out overlay smoothly
             setTimeout(() => {
-                overlay.classList.add('loaded');
+                overlay.style.opacity = '0';
+                // Remove after fade completes
                 setTimeout(() => {
                     overlay.style.display = 'none';
                 }, 300);
-            }, 200);
+            }, 100);
         }
     }
     
@@ -95,8 +99,8 @@
     
     // Safety timeout - hide after 2 seconds no matter what
     setTimeout(() => {
-        if (overlay && !overlay.classList.contains('loaded')) {
-            overlay.classList.add('loaded');
+        if (overlay && overlay.style.opacity !== '0') {
+            overlay.style.opacity = '0';
             setTimeout(() => {
                 overlay.style.display = 'none';
             }, 300);
